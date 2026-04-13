@@ -370,6 +370,57 @@ function useExample(idx) {
   document.getElementById('themeInput').value = EXAMPLES[idx];
 }
 
+// ===== Normalize Result =====
+function normalizeResult(r) {
+  if (!r) r = {};
+  if (!r.axes) r.axes = {};
+  // Remove non-axis keys that AI may have mixed into axes
+  const validAxes = ['scheffer','geels','perez','north','dixit_pindyck'];
+  for (const k of Object.keys(r.axes)) {
+    if (!validAxes.includes(k)) {
+      // Move to top level if useful
+      if (k === 'irreversibility' && !r.irreversibility) r.irreversibility = r.axes[k];
+      delete r.axes[k];
+    }
+  }
+  // Ensure all axes exist
+  for (const k of validAxes) {
+    if (!r.axes[k]) r.axes[k] = { score: 0, rationale: '', signals: [] };
+    const ax = r.axes[k];
+    if (typeof ax.score !== 'number') ax.score = parseInt(ax.score) || 0;
+    ax.score = Math.max(1, Math.min(10, ax.score));
+    if (!ax.rationale) ax.rationale = '';
+    if (!Array.isArray(ax.signals)) ax.signals = [];
+  }
+  // Calculate composite_score if missing (weighted average)
+  if (!r.composite_score || typeof r.composite_score !== 'number') {
+    const w = { scheffer: 0.25, geels: 0.20, perez: 0.15, north: 0.20, dixit_pindyck: 0.20 };
+    r.composite_score = 0;
+    for (const [k, wt] of Object.entries(w)) {
+      r.composite_score += (r.axes[k]?.score || 0) * wt;
+    }
+    r.composite_score = Math.round(r.composite_score * 10) / 10;
+  }
+  // Derive investment_timing from composite_score if missing
+  if (!r.investment_timing) {
+    const s = r.composite_score;
+    if (s >= 8) r.investment_timing = 'optimal';
+    else if (s >= 6) r.investment_timing = 'approaching';
+    else if (s >= 4) r.investment_timing = 'passing';
+    else if (s >= 2) r.investment_timing = 'too_early';
+    else r.investment_timing = 'too_early';
+  }
+  // Defaults for other fields
+  if (!r.trigger_type) r.trigger_type = '';
+  if (!r.trigger_detail) r.trigger_detail = '';
+  if (!Array.isArray(r.early_warnings)) r.early_warnings = [];
+  if (!r.irreversibility) r.irreversibility = { score: 0, rationale: '' };
+  if (typeof r.irreversibility.score !== 'number') r.irreversibility.score = parseInt(r.irreversibility.score) || 0;
+  if (!r.overall_assessment) r.overall_assessment = '';
+  if (typeof r.confidence !== 'number') r.confidence = 0;
+  return r;
+}
+
 // ===== Evaluate =====
 async function evaluate() {
   const theme = document.getElementById('themeInput').value.trim();
@@ -453,6 +504,8 @@ async function evaluate() {
       if (!repairMatch) throw new Error('AIの応答からJSONを抽出できませんでした');
       result = JSON.parse(repairMatch[0]);
     }
+    // Normalize: ensure all expected fields exist with fallback calculations
+    result = normalizeResult(result);
     currentResult = result;
 
     // Save to history
