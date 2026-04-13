@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structural Inflection Point Scorer</title>
+<link rel="icon" href="https://esse-sense.com/favicon.ico">
+<style>
+/* ===== Design System ===== */
+:root {
+  --bg: #f0e9e1;
+  --card: #ffffff;
+  --accent: #783c28;
+  --accent-light: #a05a3c;
+  --accent-bg: #f5ede6;
+  --text: #333333;
+  --text-muted: #888;
+  --border: #e0d6cc;
+  --green: #2d7a3a;
+  --yellow: #b8860b;
+  --red: #c0392b;
+  --blue: #2c5f8a;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(120,60,40,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; min-height:100vh; }
+a { color:var(--accent); }
+
+/* ===== Header ===== */
+.header { background:var(--card); border-bottom:1px solid var(--border); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow:var(--shadow); }
+.header h1 { font-size:18px; font-weight:700; color:var(--accent); letter-spacing:0.5px; }
+.header h1 small { font-size:12px; color:var(--text-muted); font-weight:400; margin-left:8px; }
+.header-actions { display:flex; gap:8px; align-items:center; }
+.btn-icon { background:none; border:1px solid var(--border); border-radius:6px; padding:6px 10px; cursor:pointer; font-size:14px; color:var(--text-muted); transition:all .2s; }
+.btn-icon:hover { border-color:var(--accent); color:var(--accent); }
+
+/* ===== Main Layout ===== */
+.container { max-width:1100px; margin:0 auto; padding:24px; }
+.main-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+@media (max-width:768px) { .main-grid { grid-template-columns:1fr; } }
+
+/* ===== Cards ===== */
+.card { background:var(--card); border-radius:var(--radius); border:1px solid var(--border); padding:20px; box-shadow:var(--shadow); }
+.card h2 { font-size:15px; font-weight:600; color:var(--accent); margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--accent-bg); }
+
+/* ===== Input Area ===== */
+.input-area textarea { width:100%; height:200px; border:1px solid var(--border); border-radius:8px; padding:12px; font-size:14px; font-family:inherit; line-height:1.7; resize:vertical; transition:border-color .2s; }
+.input-area textarea:focus { outline:none; border-color:var(--accent); }
+.input-area textarea::placeholder { color:#bbb; }
+.input-controls { display:flex; gap:8px; margin-top:12px; align-items:center; }
+.btn-primary { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:10px 24px; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s; }
+.btn-primary:hover { background:var(--accent-light); }
+.btn-primary:disabled { opacity:.5; cursor:not-allowed; }
+.model-select { border:1px solid var(--border); border-radius:6px; padding:8px 12px; font-size:13px; background:var(--card); color:var(--text); }
+
+/* ===== Loading ===== */
+.loading { display:none; text-align:center; padding:40px; }
+.loading.active { display:block; }
+.spinner { width:40px; height:40px; border:3px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ===== Results ===== */
+.result-panel { display:none; }
+.result-panel.active { display:block; }
+.score-hero { text-align:center; padding:20px 0; }
+.score-number { font-size:64px; font-weight:800; line-height:1; }
+.score-label { font-size:13px; color:var(--text-muted); margin-top:4px; }
+.timing-badge { display:inline-block; padding:4px 14px; border-radius:20px; font-size:12px; font-weight:600; margin-top:8px; }
+.timing-too_early { background:#e8e8e8; color:#666; }
+.timing-approaching { background:#fff3cd; color:#856404; }
+.timing-optimal { background:#d4edda; color:#155724; }
+.timing-passing { background:#ffe0cc; color:#993d00; }
+.timing-too_late { background:#f8d7da; color:#721c24; }
+
+/* ===== Radar Chart ===== */
+.radar-wrap { display:flex; justify-content:center; margin:16px 0; }
+.radar-wrap svg { max-width:300px; width:100%; }
+
+/* ===== Axis Cards ===== */
+.axis-card { border:1px solid var(--border); border-radius:8px; padding:14px; margin-bottom:10px; }
+.axis-header { display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
+.axis-name { font-weight:600; font-size:14px; }
+.axis-score-badge { background:var(--accent-bg); color:var(--accent); padding:2px 10px; border-radius:12px; font-size:13px; font-weight:700; min-width:36px; text-align:center; }
+.axis-body { display:none; margin-top:10px; font-size:13px; color:#555; line-height:1.7; }
+.axis-card.open .axis-body { display:block; }
+.score-bar { height:6px; background:var(--accent-bg); border-radius:3px; margin-top:6px; overflow:hidden; }
+.score-bar-fill { height:100%; border-radius:3px; transition:width .6s ease; }
+.signal-tag { display:inline-block; background:var(--accent-bg); color:var(--accent); padding:2px 8px; border-radius:4px; font-size:11px; margin:2px 2px 0 0; }
+
+/* ===== Additional Info ===== */
+.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+@media (max-width:500px) { .info-grid { grid-template-columns:1fr; } }
+.info-box { background:var(--accent-bg); border-radius:8px; padding:12px; }
+.info-box-label { font-size:11px; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+.info-box-value { font-size:14px; font-weight:600; margin-top:4px; }
+
+/* ===== Overall Assessment ===== */
+.assessment-text { background:var(--accent-bg); border-radius:8px; padding:16px; margin-top:12px; font-size:13px; line-height:1.8; }
+
+/* ===== History ===== */
+.history-section { margin-top:24px; }
+.history-item { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border:1px solid var(--border); border-radius:8px; margin-bottom:6px; cursor:pointer; transition:all .2s; background:var(--card); }
+.history-item:hover { border-color:var(--accent); }
+.history-theme { font-size:13px; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-right:12px; }
+.history-score { font-size:18px; font-weight:700; color:var(--accent); min-width:32px; text-align:center; }
+.history-meta { font-size:11px; color:var(--text-muted); margin-left:12px; white-space:nowrap; }
+.history-actions { display:flex; gap:8px; margin-bottom:12px; justify-content:flex-end; }
+.btn-sm { padding:4px 12px; font-size:12px; border:1px solid var(--border); border-radius:6px; background:var(--card); cursor:pointer; color:var(--text-muted); transition:all .2s; }
+.btn-sm:hover { border-color:var(--accent); color:var(--accent); }
+.btn-sm.danger:hover { border-color:var(--red); color:var(--red); }
+.empty-state { text-align:center; padding:32px; color:var(--text-muted); font-size:13px; }
+
+/* ===== Modal ===== */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:200; justify-content:center; align-items:center; }
+.modal-overlay.active { display:flex; }
+.modal { background:var(--card); border-radius:var(--radius); padding:24px; max-width:420px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,.2); }
+.modal h3 { font-size:16px; color:var(--accent); margin-bottom:16px; }
+.modal input { width:100%; border:1px solid var(--border); border-radius:6px; padding:10px; font-size:14px; margin-bottom:12px; }
+.modal input:focus { outline:none; border-color:var(--accent); }
+.modal-actions { display:flex; gap:8px; justify-content:flex-end; }
+.api-status { font-size:12px; margin-bottom:8px; }
+.api-status.ok { color:var(--green); }
+.api-status.ng { color:var(--red); }
+
+/* ===== Examples ===== */
+.examples { margin-top:12px; }
+.examples summary { font-size:12px; color:var(--text-muted); cursor:pointer; }
+.example-btn { display:block; width:100%; text-align:left; padding:8px 10px; margin-top:4px; border:1px solid var(--border); border-radius:6px; background:var(--card); font-size:12px; cursor:pointer; transition:all .2s; }
+.example-btn:hover { border-color:var(--accent); background:var(--accent-bg); }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>Structural Inflection Point Scorer<small>構造的変化点スコアラー</small></h1>
+  <div class="header-actions">
+    <button class="btn-icon" onclick="openSettings()" title="API設定">&#9881;</button>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="container">
+  <div class="main-grid">
+
+    <!-- Left: Input -->
+    <div>
+      <div class="card input-area">
+        <h2>研究テーマ / 事業領域を入力</h2>
+        <textarea id="themeInput" placeholder="評価したい研究テーマや事業領域の説明を入力してください。&#10;&#10;例：超伝導量子コンピュータ向け超低消費電力KTWPA読み出しモジュール。Google Willowが2024年に105量子ビットでエラー訂正閾値を突破し、数千〜数万量子ビットへのスケールアップが「今やらなければいけない課題」に転換。従来のHEMT増幅器では発熱が大きすぎて量子ビット数の増加に耐えられない物理的制約が顕在化。"></textarea>
+        <div class="input-controls">
+          <button class="btn-primary" id="evalBtn" onclick="evaluate()">変化点を評価</button>
+          <select class="model-select" id="modelSelect">
+            <option value="claude-sonnet-4-6">Sonnet 4.6 (推奨)</option>
+            <option value="claude-opus-4-6">Opus 4.6</option>
+          </select>
+        </div>
+        <details class="examples">
+          <summary>入力例を使う</summary>
+          <button class="example-btn" onclick="useExample(0)">量子コンピュータ向けKTWPA読み出しモジュール（物理的限界到達型）</button>
+          <button class="example-btn" onclick="useExample(1)">深海電気合成微生物によるCO2直接変換（需要構造転換型）</button>
+          <button class="example-btn" onclick="useExample(2)">微生物バイオリファイニングによるレアメタル回収（地政学+規制複合型）</button>
+        </details>
+      </div>
+    </div>
+
+    <!-- Right: Results -->
+    <div>
+      <div class="card">
+        <h2>評価結果</h2>
+
+        <!-- Placeholder -->
+        <div id="placeholder" class="empty-state">
+          研究テーマを入力して「変化点を評価」を押してください
+        </div>
+
+        <!-- Loading -->
+        <div id="loading" class="loading">
+          <div class="spinner"></div>
+          <div style="color:var(--text-muted); font-size:13px;">5つの理論的フレームワークで分析中...</div>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="result-panel">
+          <div class="score-hero">
+            <div class="score-number" id="compositeScore">--</div>
+            <div class="score-label">総合変化点スコア (1-10)</div>
+            <div id="timingBadge"></div>
+          </div>
+
+          <div class="radar-wrap" id="radarWrap"></div>
+
+          <div id="axisCards"></div>
+
+          <div class="info-grid" id="infoGrid"></div>
+
+          <div id="assessmentBox"></div>
+
+          <div style="margin-top:12px; text-align:right;">
+            <button class="btn-sm" onclick="copyAsMarkdown()">Markdownでコピー</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="history-section card" style="margin-top:24px;">
+    <h2>評価履歴</h2>
+    <div class="history-actions">
+      <button class="btn-sm danger" onclick="clearHistory()">履歴をクリア</button>
+    </div>
+    <div id="historyList"></div>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <h3>API設定</h3>
+    <div class="api-status" id="apiStatus"></div>
+    <input type="password" id="apiKeyInput" placeholder="Anthropic API Key (sk-ant-...)" />
+    <div class="modal-actions">
+      <button class="btn-sm danger" onclick="clearApiKey()">クリア</button>
+      <button class="btn-sm" onclick="closeSettings()">キャンセル</button>
+      <button class="btn-primary" style="font-size:13px; padding:6px 16px;" onclick="saveApiKey()">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== Constants =====
+const STORAGE_KEY = 'sip_scorer_history';
+const API_KEY_KEY = 'anthropic_api_key';
+const MAX_HISTORY = 50;
+
+const AXIS_META = {
+  scheffer:      { name: '臨界遷移',       fullName: 'Scheffer臨界遷移論',          color: '#c0392b' },
+  geels:         { name: '多層的視座',      fullName: 'Geels多層的視座(MLP)',         color: '#2c5f8a' },
+  perez:         { name: '技術革命波動',    fullName: 'Perez技術革命論',              color: '#27ae60' },
+  north:         { name: '制度経済学',      fullName: 'North制度経済学',              color: '#8e44ad' },
+  dixit_pindyck: { name: 'リアルオプション', fullName: 'Dixit-Pindyckリアルオプション', color: '#d4880f' }
+};
+
+const TIMING_LABELS = {
+  too_early:   '時期尚早',
+  approaching: '接近中',
+  optimal:     '最適タイミング',
+  passing:     '通過中',
+  too_late:    '機会逸失'
+};
+
+const TRIGGER_LABELS = {
+  regulatory:      '規制確定型',
+  geopolitical:    '地政学的再編型',
+  physical_limits: '物理的限界到達型',
+  demand_shift:    '需要構造転換型',
+  compound:        '複合型'
+};
+
+const EXAMPLES = [
+  `超伝導量子コンピュータ向け超低消費電力KTWPA読み出しモジュール。Google Willowが2024年に105量子ビットでエラー訂正閾値を突破し、IBMは2026年Kookaburra、2029年FTQCを公言。数千〜数万量子ビットへのスケールアップが「今やらなければいけない課題」に転換した。従来のHEMT増幅器では発熱が大きすぎて量子ビット数の増加に耐えられない物理的制約が顕在化。KTWPA（運動インダクタンス型パラメトリック増幅器）は、この物理的制約を直接解除する技術で原理実証済み。`,
+  `深海電気合成微生物によるCO2直接変換プラットフォーム。2024年のICVCMによるCCPラベル本格運用、Microsoft/Apple等による数百万トン規模の除去型クレジット購入コミットメント、EU SAF義務化により、「削減型」から「除去型」カーボンクレジットへの需要シフトが不可逆的に発生。除去型クレジットの381%プレミアムがバイオプロセスの経済性を逆転させた。JAMSTECの深海探査インフラなしには試料取得すら不可能な固有技術。`,
+  `微生物-ナノハイブリッド×タンパク質工学によるレアメタルバイオリファイニングプラットフォーム。2024年、中国がガリウム・ゲルマニウムの輸出規制を本格化。レアアースの精錬能力は中国が世界の90%を握る。EV・半導体・再エネの需要増に対しサプライチェーンの脆弱性が政治イシュー化。同時にEU電池規則、米国IRA（インフレ抑制法）のリサイクル要件強化により、バイオリファイニングの経済性の前提条件が根本的に変化。`
+];
+
+// ===== System Prompt =====
+const SYSTEM_PROMPT = `あなたは「構造的変化点（Structural Inflection Point）」理論に基づく研究テーマ・事業領域の評価専門家です。
+
+## 構造的変化点とは
+技術の商業化において、複数の遅い変数（技術コスト、規制環境、インフラ整備度、補完財の成熟度、社会的受容度）の緩慢な変化が蓄積した結果、支配的な社会技術的レジームの引力盆が消滅し、系が新たな安定状態へ不連続に遷移する転換点。
+
+## 評価軸（5つの理論的フレームワーク）
+
+### 軸1: Scheffer臨界遷移論
+複雑系が「折り畳み分岐（fold bifurcation）」を通じて不連続にレジームシフトする理論。
+- 高得点(7-10): 遅い変数（コスト低下、規制変化、インフラ整備）が明確に閾値に接近。臨界減速のシグナル（市場の応答鈍化、プレイヤー間の二極化）が観察可能。
+- 中得点(4-6): 遅い変数が変化しているが、閾値までの距離が不確実。シグナルは曖昧。
+- 低得点(1-3): 遅い変数の変化が緩慢で、臨界点は遠い。既存レジームが安定。
+
+### 軸2: Geels多層的視座(MLP)
+ランドスケープ圧力→レジーム不安定化→ニッチの「機会の窓」という3層相互作用モデル。
+- 高得点(7-10): ランドスケープ圧力（地政学、規制、パンデミック等）がレジームを明確に不安定化。機会の窓が開いている、または開きつつある。
+- 中得点(4-6): ランドスケープ圧力は存在するが、レジームの抵抗力がまだ強い。窓は半開き。
+- 低得点(1-3): ランドスケープ圧力が弱い、またはレジームが安定。窓は閉じている。
+
+### 軸3: Perez技術革命波動論
+技術革命の「導入期→転換点→展開期」サイクル。転換点は制度・規制・社会的変化によって決定される。
+- 高得点(7-10): 関連する技術パラダイムが導入期を終え、制度的転換点に位置。投機的バブル後の「展開期」入りの兆候。
+- 中得点(4-6): 導入期の中盤。投機的関心はあるが制度的転換は未到来。
+- 低得点(1-3): まだ導入期の初期。基礎研究フェーズ。
+
+### 軸4: North制度経済学
+制度変化（規制・法律・標準化）による取引費用の急落が市場を創出するメカニズム。
+- 高得点(7-10): 具体的な規制変化・標準確定・認証制度の開始が確認できる。取引費用が急落中。
+- 中得点(4-6): 規制議論が進行中だが未確定。パブリックコメント段階等。
+- 低得点(1-3): 規制的変化の兆候が乏しい。既存の制度的障壁が高い。
+
+### 軸5: Dixit-Pindyckリアルオプション
+不確実性の急落→待機オプション価値の消滅→投資の最適タイミング。
+- 高得点(7-10): 規制確定、標準化、大口需要家のコミットメント等により不確実性が急減。今投資すべき局面。
+- 中得点(4-6): 一部の不確実性は解消されたが、重要な不確実性が残存。
+- 低得点(1-3): 不確実性が高く、待機が合理的。
+
+## トリガー分類（5類型）
+- regulatory: 規制確定型（規制・標準の確定が需要を創出）
+- geopolitical: 地政学的再編型（サプライチェーン再編が市場を創出）
+- physical_limits: 物理的限界到達型（既存技術の物理的限界が代替技術を必須に）
+- demand_shift: 需要構造転換型（需要の質的変化が不可逆的に発生）
+- compound: 複合型（上記複数の同時発生・相互増幅）
+
+## 投資タイミング判定
+- too_early: 変化点まで3年以上。基礎研究段階。
+- approaching: 変化点まで1-3年。準備段階。
+- optimal: 変化点の直前〜直後。最適な参入タイミング。
+- passing: 変化点を通過中。早期フォロワーの機会。
+- too_late: 変化点通過済み。先行者優位が確立。
+
+## 回答形式
+必ず以下のJSON形式のみで回答してください。JSON以外のテキスト、マークダウンのコードフェンス、説明文は一切含めないでください。
+
+{"axes":{"scheffer":{"score":0,"rationale":"","signals":[]},"geels":{"score":0,"rationale":"","signals":[]},"perez":{"score":0,"rationale":"","signals":[]},"north":{"score":0,"rationale":"","signals":[]},"dixit_pindyck":{"score":0,"rationale":"","signals":[]}},"composite_score":0,"trigger_type":"","trigger_detail":"","early_warnings":[],"irreversibility":{"score":0,"rationale":""},"overall_assessment":"","investment_timing":"","confidence":0}
+
+scoreは1-10の整数、confidenceは0.0-1.0の小数です。composite_scoreは5軸の加重平均（Scheffer:0.25, Geels:0.20, Perez:0.15, North:0.20, Dixit-Pindyck:0.20）で算出してください。`;
+
+// ===== State =====
+let currentResult = null;
+
+// ===== API Key Management =====
+function getApiKey() {
+  return localStorage.getItem(API_KEY_KEY) || '';
+}
+function saveApiKey() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (key) localStorage.setItem(API_KEY_KEY, key);
+  updateApiStatus();
+  closeSettings();
+}
+function clearApiKey() {
+  localStorage.removeItem(API_KEY_KEY);
+  document.getElementById('apiKeyInput').value = '';
+  updateApiStatus();
+}
+function updateApiStatus() {
+  const el = document.getElementById('apiStatus');
+  const key = getApiKey();
+  if (key) {
+    el.className = 'api-status ok';
+    el.textContent = 'APIキー設定済み (' + key.slice(0,12) + '...)';
+  } else {
+    el.className = 'api-status ng';
+    el.textContent = 'APIキーが未設定です';
+  }
+}
+function openSettings() {
+  document.getElementById('settingsModal').classList.add('active');
+  document.getElementById('apiKeyInput').value = getApiKey();
+  updateApiStatus();
+}
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('active');
+}
+document.getElementById('settingsModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('settingsModal')) closeSettings();
+});
+
+// ===== Examples =====
+function useExample(idx) {
+  document.getElementById('themeInput').value = EXAMPLES[idx];
+}
+
+// ===== Evaluate =====
+async function evaluate() {
+  const theme = document.getElementById('themeInput').value.trim();
+  if (!theme) return alert('研究テーマを入力してください');
+  const apiKey = getApiKey();
+  if (!apiKey) { openSettings(); return alert('APIキーを設定してください'); }
+
+  const model = document.getElementById('modelSelect').value;
+  const btn = document.getElementById('evalBtn');
+
+  // UI state
+  btn.disabled = true;
+  document.getElementById('placeholder').style.display = 'none';
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('loading').classList.add('active');
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: model,
+        max_tokens: 4096,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: `以下の研究テーマ/事業領域を評価してください：\n\n${theme}` }]
+      })
+    });
+
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error: ${resp.status}`);
+    }
+
+    const data = await resp.json();
+    let text = data.content[0].text;
+
+    // Strip markdown code fences if present
+    text = text.replace(/^```json\s*/i, '').replace(/\s*```$/i, '').trim();
+
+    // Extract JSON if wrapped in text
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('AIの応答からJSONを抽出できませんでした');
+
+    const result = JSON.parse(jsonMatch[0]);
+    currentResult = result;
+
+    // Save to history
+    saveToHistory(theme, result, model);
+
+    // Render
+    renderResults(result);
+
+  } catch (err) {
+    alert('エラー: ' + err.message);
+    document.getElementById('placeholder').style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    document.getElementById('loading').classList.remove('active');
+  }
+}
+
+// ===== Render Results =====
+function renderResults(r) {
+  document.getElementById('results').classList.add('active');
+
+  // Composite score
+  const score = r.composite_score || 0;
+  const scoreEl = document.getElementById('compositeScore');
+  scoreEl.textContent = score.toFixed(1);
+  scoreEl.style.color = score >= 7 ? 'var(--green)' : score >= 4 ? 'var(--yellow)' : 'var(--red)';
+
+  // Timing badge
+  const timing = r.investment_timing || 'approaching';
+  document.getElementById('timingBadge').innerHTML =
+    `<span class="timing-badge timing-${timing}">${TIMING_LABELS[timing] || timing}</span>`;
+
+  // Radar chart
+  const scores = {};
+  for (const k of Object.keys(AXIS_META)) {
+    scores[k] = r.axes?.[k]?.score || 0;
+  }
+  document.getElementById('radarWrap').innerHTML = renderRadarSVG(scores);
+
+  // Axis cards
+  let axisHtml = '';
+  for (const [key, meta] of Object.entries(AXIS_META)) {
+    const ax = r.axes?.[key] || {};
+    const s = ax.score || 0;
+    const pct = s * 10;
+    const barColor = s >= 7 ? 'var(--green)' : s >= 4 ? 'var(--yellow)' : '#ccc';
+    const signals = (ax.signals || []).map(sig => `<span class="signal-tag">${esc(sig)}</span>`).join('');
+    axisHtml += `
+      <div class="axis-card" onclick="this.classList.toggle('open')">
+        <div class="axis-header">
+          <span class="axis-name">${meta.fullName}</span>
+          <span class="axis-score-badge">${s}</span>
+        </div>
+        <div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
+        <div class="axis-body">
+          <p>${esc(ax.rationale || '')}</p>
+          ${signals ? '<div style="margin-top:8px">' + signals + '</div>' : ''}
+        </div>
+      </div>`;
+  }
+  document.getElementById('axisCards').innerHTML = axisHtml;
+
+  // Info grid
+  const trigger = r.trigger_type || '';
+  const irr = r.irreversibility || {};
+  const conf = r.confidence || 0;
+  document.getElementById('infoGrid').innerHTML = `
+    <div class="info-box">
+      <div class="info-box-label">トリガー類型</div>
+      <div class="info-box-value">${esc(TRIGGER_LABELS[trigger] || trigger)}</div>
+      <div style="font-size:12px;color:#666;margin-top:4px">${esc(r.trigger_detail || '')}</div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-label">不可逆性</div>
+      <div class="info-box-value">${irr.score || 0} / 10</div>
+      <div style="font-size:12px;color:#666;margin-top:4px">${esc(irr.rationale || '')}</div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-label">早期警戒シグナル</div>
+      <div style="margin-top:6px">${(r.early_warnings || []).map(w => `<span class="signal-tag">${esc(w)}</span>`).join('')}</div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-label">AI確信度</div>
+      <div class="info-box-value">${(conf * 100).toFixed(0)}%</div>
+    </div>`;
+
+  // Assessment
+  document.getElementById('assessmentBox').innerHTML = r.overall_assessment
+    ? `<div class="assessment-text"><strong>総合評価:</strong> ${esc(r.overall_assessment)}</div>` : '';
+}
+
+// ===== Radar SVG =====
+function renderRadarSVG(scores) {
+  const cx = 150, cy = 150, R = 120;
+  const keys = Object.keys(AXIS_META);
+  const n = keys.length;
+
+  function pt(i, r) {
+    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+    return [cx + r * Math.cos(angle), cy + r * Math.sin(angle)];
+  }
+
+  // Grid lines
+  let grid = '';
+  for (const frac of [0.33, 0.66, 1.0]) {
+    const pts = keys.map((_, i) => pt(i, R * frac).join(',')).join(' ');
+    grid += `<polygon points="${pts}" fill="none" stroke="#d5ccc2" stroke-width="0.8"/>`;
+  }
+
+  // Axis lines + labels
+  let axes = '';
+  keys.forEach((k, i) => {
+    const [x, y] = pt(i, R);
+    axes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#d5ccc2" stroke-width="0.8"/>`;
+    const [lx, ly] = pt(i, R + 22);
+    const meta = AXIS_META[k];
+    axes += `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#666">${meta.name}</text>`;
+  });
+
+  // Score polygon
+  const scorePts = keys.map((k, i) => {
+    const s = Math.max(1, Math.min(10, scores[k] || 0));
+    return pt(i, R * s / 10).join(',');
+  }).join(' ');
+
+  // Score dots
+  let dots = '';
+  keys.forEach((k, i) => {
+    const s = Math.max(1, Math.min(10, scores[k] || 0));
+    const [x, y] = pt(i, R * s / 10);
+    dots += `<circle cx="${x}" cy="${y}" r="3.5" fill="${AXIS_META[k].color}" stroke="#fff" stroke-width="1.5"/>`;
+  });
+
+  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    ${grid}${axes}
+    <polygon points="${scorePts}" fill="rgba(120,60,40,0.15)" stroke="var(--accent)" stroke-width="2"/>
+    ${dots}
+  </svg>`;
+}
+
+// ===== History =====
+function loadHistory() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+}
+function saveToHistory(theme, result, model) {
+  const history = loadHistory();
+  history.unshift({
+    id: Date.now().toString(36),
+    timestamp: new Date().toISOString(),
+    theme: theme,
+    result: result,
+    model: model
+  });
+  if (history.length > MAX_HISTORY) history.length = MAX_HISTORY;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  renderHistory();
+}
+function clearHistory() {
+  if (!confirm('評価履歴をすべて削除しますか？')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  renderHistory();
+}
+function renderHistory() {
+  const history = loadHistory();
+  const el = document.getElementById('historyList');
+  if (!history.length) {
+    el.innerHTML = '<div class="empty-state">評価履歴はまだありません</div>';
+    return;
+  }
+  el.innerHTML = history.map(h => {
+    const score = h.result?.composite_score || 0;
+    const date = new Date(h.timestamp).toLocaleDateString('ja-JP');
+    const color = score >= 7 ? 'var(--green)' : score >= 4 ? 'var(--yellow)' : 'var(--text-muted)';
+    return `<div class="history-item" onclick="showHistoryItem('${h.id}')">
+      <div class="history-theme">${esc(h.theme)}</div>
+      <span class="history-score" style="color:${color}">${score.toFixed(1)}</span>
+      <span class="history-meta">${date}</span>
+    </div>`;
+  }).join('');
+}
+function showHistoryItem(id) {
+  const history = loadHistory();
+  const item = history.find(h => h.id === id);
+  if (!item) return;
+  document.getElementById('themeInput').value = item.theme;
+  currentResult = item.result;
+  document.getElementById('placeholder').style.display = 'none';
+  renderResults(item.result);
+}
+
+// ===== Copy as Markdown =====
+function copyAsMarkdown() {
+  if (!currentResult) return;
+  const r = currentResult;
+  const theme = document.getElementById('themeInput').value;
+  let md = `# 構造的変化点評価\n\n`;
+  md += `**テーマ**: ${theme}\n`;
+  md += `**総合スコア**: ${r.composite_score}/10\n`;
+  md += `**投資タイミング**: ${TIMING_LABELS[r.investment_timing] || r.investment_timing}\n`;
+  md += `**トリガー類型**: ${TRIGGER_LABELS[r.trigger_type] || r.trigger_type}\n\n`;
+  md += `## 5軸評価\n\n`;
+  for (const [key, meta] of Object.entries(AXIS_META)) {
+    const ax = r.axes?.[key] || {};
+    md += `### ${meta.fullName}: ${ax.score}/10\n${ax.rationale}\n\n`;
+  }
+  md += `## 総合評価\n${r.overall_assessment}\n`;
+  navigator.clipboard.writeText(md).then(() => {
+    const btn = document.querySelector('[onclick="copyAsMarkdown()"]');
+    btn.textContent = 'コピーしました';
+    setTimeout(() => btn.textContent = 'Markdownでコピー', 2000);
+  });
+}
+
+// ===== Utility =====
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+// ===== Init =====
+renderHistory();
+</script>
+</body>
+</html>
