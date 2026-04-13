@@ -237,7 +237,7 @@ a:hover { color: var(--primary-hover); }
         <h2>研究テーマ / 事業領域を入力</h2>
         <textarea id="themeInput" placeholder="評価したい研究テーマや事業領域の説明を入力してください。&#10;&#10;例：超伝導量子コンピュータ向け超低消費電力KTWPA読み出しモジュール。Google Willowが2024年に105量子ビットでエラー訂正閾値を突破し、数千〜数万量子ビットへのスケールアップが「今やらなければいけない課題」に転換。従来のHEMT増幅器では発熱が大きすぎて量子ビット数の増加に耐えられない物理的制約が顕在化。"></textarea>
         <div class="input-controls">
-          <button class="btn-primary" id="evalBtn" onclick="evaluate()">変化点を評価</button>
+          <button class="btn-primary" id="evalBtn">変化点を評価</button>
           <select class="model-select" id="modelSelect">
             <option value="claude-sonnet-4-6">Sonnet 4.6 (推奨)</option>
             <option value="claude-opus-4-6">Opus 4.6</option>
@@ -864,7 +864,44 @@ function copyAsMarkdown() {
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
 // ===== Init =====
-renderHistory();
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('[SIP Scorer] Init started');
+
+  // Bind evaluate button
+  const evalBtn = document.getElementById('evalBtn');
+  if (evalBtn) {
+    evalBtn.addEventListener('click', () => {
+      console.log('[SIP Scorer] Evaluate button clicked');
+      evaluate();
+    });
+    console.log('[SIP Scorer] Evaluate button bound');
+  } else {
+    console.error('[SIP Scorer] evalBtn not found!');
+  }
+
+  // Bind example buttons
+  document.querySelectorAll('.example-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => useExample(i));
+  });
+
+  // Bind settings
+  document.querySelector('[title="API設定"]')?.addEventListener('click', openSettings);
+
+  // Bind history clear
+  document.querySelector('[onclick="clearHistory()"]')?.addEventListener('click', clearHistory);
+
+  // Bind copy markdown
+  document.querySelector('[onclick="copyAsMarkdown()"]')?.addEventListener('click', copyAsMarkdown);
+
+  renderHistory();
+
+  // Auto-show settings if no API key
+  if (!getApiKey()) {
+    openSettings();
+    showToast('APIキーを設定してください', 'warning', 10000);
+  }
+  console.log('[SIP Scorer] Init complete, API key:', getApiKey() ? 'set (' + getApiKey().slice(0,12) + '...)' : 'NOT SET');
+});
 </script>
 </body>
 </html>
