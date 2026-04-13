@@ -222,7 +222,9 @@ a:hover { color: var(--primary-hover); }
   justify-content:space-between;
   align-items:center;
 }
-.axis-name { font-weight:600; font-size:13px; color:var(--text-secondary); }
+.axis-name-wrap { display:flex; flex-direction:column; gap:2px; }
+.axis-name { font-weight:600; font-size:13px; color:var(--text); }
+.axis-desc { font-size:11px; color:var(--text-muted); font-weight:400; }
 .axis-score-num { font-size:15px; font-weight:700; min-width:28px; text-align:right; }
 .score-bar { height:5px; background:var(--bg-secondary); border-radius:3px; margin-top:8px; overflow:hidden; }
 .score-bar-fill { height:100%; border-radius:3px; transition:width .6s var(--ease-out); }
@@ -335,6 +337,7 @@ a:hover { color: var(--primary-hover); }
 <div class="header">
   <h1>Structural Inflection Point Scorer<small>構造的変化点スコアラー</small></h1>
   <div class="header-actions">
+    <a href="guide.html" style="font-size:13px; color:var(--text-muted); text-decoration:none; margin-right:4px;">使い方ガイド</a>
     <button class="btn-icon" onclick="openSettings()" title="API設定">&#9881;</button>
   </div>
 </div>
@@ -379,11 +382,11 @@ a:hover { color: var(--primary-hover); }
       </div>
       <div style="color:var(--text); font-size:14px; font-weight:600; margin-bottom:12px;">構造的変化点を分析中</div>
       <ul class="loading-steps" id="loadingSteps">
-        <li class="active" id="step1"><span class="check"></span>Scheffer臨界遷移論で評価</li>
-        <li id="step2"><span class="check"></span>Geels多層的視座で評価</li>
-        <li id="step3"><span class="check"></span>Perez技術革命波動論で評価</li>
-        <li id="step4"><span class="check"></span>North制度経済学で評価</li>
-        <li id="step5"><span class="check"></span>Dixit-Pindyckリアルオプションで評価</li>
+        <li class="active" id="step1"><span class="check"></span>閾値への接近度を分析中</li>
+        <li id="step2"><span class="check"></span>外圧と機会の窓を分析中</li>
+        <li id="step3"><span class="check"></span>技術革命サイクルを分析中</li>
+        <li id="step4"><span class="check"></span>制度的障壁の変化を分析中</li>
+        <li id="step5"><span class="check"></span>不確実性の解消度を分析中</li>
       </ul>
     </div>
   </div>
@@ -441,11 +444,11 @@ const API_KEY_KEY = 'anthropic_api_key';
 const MAX_HISTORY = 50;
 
 const AXIS_META = {
-  scheffer:      { name: '臨界遷移',       fullName: 'Scheffer臨界遷移論',          color: '#783c28' },
-  geels:         { name: '多層的視座',      fullName: 'Geels多層的視座(MLP)',         color: '#A86B50' },
-  perez:         { name: '技術革命波動',    fullName: 'Perez技術革命論',              color: '#5a7a52' },
-  north:         { name: '制度経済学',      fullName: 'North制度経済学',              color: '#2c5f8a' },
-  dixit_pindyck: { name: 'リアルオプション', fullName: 'Dixit-Pindyckリアルオプション', color: '#C9A96E' }
+  scheffer:      { name: '閾値への接近',     fullName: '閾値への接近度（Scheffer臨界遷移論）',              color: '#783c28', desc: '遅い変数が臨界点にどれだけ近づいているか' },
+  geels:         { name: '外圧と機会の窓',   fullName: '外圧と機会の窓（Geels多層的視座）',                color: '#A86B50', desc: 'ランドスケープ圧力がレジームを不安定化させているか' },
+  perez:         { name: '技術革命サイクル',  fullName: '技術革命サイクル上の位置（Perez技術革命論）',       color: '#5a7a52', desc: '導入期→展開期の転換点にどれだけ近いか' },
+  north:         { name: '制度的障壁の変化',  fullName: '制度的障壁の変化（North制度経済学）',              color: '#2c5f8a', desc: '規制・標準化による取引費用の低下が起きているか' },
+  dixit_pindyck: { name: '不確実性の解消',   fullName: '不確実性の解消度（Dixit-Pindyckリアルオプション）', color: '#C9A96E', desc: '投資の「待ち」の価値が消失しているか' }
 };
 
 const TIMING_LABELS = {
@@ -825,7 +828,10 @@ function renderResults(r) {
     axisHtml += `
       <div class="axis-card" style="border-left-color:${meta.color}">
         <div class="axis-header">
-          <span class="axis-name">${meta.fullName}</span>
+          <div class="axis-name-wrap">
+            <span class="axis-name">${meta.fullName}</span>
+            <span class="axis-desc">${meta.desc}</span>
+          </div>
           <span class="axis-score-num" style="color:${meta.color}">${s}</span>
         </div>
         <div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:${meta.color}"></div></div>
