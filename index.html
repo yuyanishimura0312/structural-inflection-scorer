@@ -491,6 +491,11 @@ function normalizeResult(r) {
 
 // ===== Evaluate =====
 async function evaluate() {
+  // Check file:// protocol
+  if (location.protocol === 'file:') {
+    alert('file://プロトコルではAPI通信ができません。\n\n以下のいずれかで開いてください:\n1. python3 -m http.server 8765 でローカルサーバーを起動\n2. GitHub Pages (https://yuyanishimura0312.github.io/structural-inflection-scorer/)');
+    return;
+  }
   const theme = document.getElementById('themeInput').value.trim();
   if (!theme) return alert('研究テーマを入力してください');
   const apiKey = getApiKey();
