@@ -122,10 +122,29 @@ a:hover { color: var(--primary-hover); }
 .model-select:focus { outline:none; border-color:var(--primary); }
 
 /* ===== Loading ===== */
-.loading { display:none; text-align:center; padding:40px; }
+.loading { display:none; text-align:center; padding:32px 20px; }
 .loading.active { display:block; }
-.spinner { width:40px; height:40px; border:3px solid var(--border); border-top-color:var(--primary); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 16px; }
+.loading-visual { position:relative; width:120px; height:120px; margin:0 auto 20px; }
+.loading-ring { width:120px; height:120px; border:3px solid var(--border-light); border-top-color:var(--primary); border-right-color:var(--accent); border-radius:50%; animation:spin 1.2s linear infinite; }
+.loading-ring-inner { position:absolute; top:15px; left:15px; width:90px; height:90px; border:2px solid var(--border-light); border-bottom-color:var(--primary); border-left-color:var(--gold); border-radius:50%; animation:spin-reverse 1.8s linear infinite; }
+.loading-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:28px; animation:pulse 2s ease-in-out infinite; color:var(--primary); }
 @keyframes spin { to { transform:rotate(360deg); } }
+@keyframes spin-reverse { to { transform:rotate(-360deg); } }
+@keyframes pulse { 0%,100% { opacity:.4; transform:translate(-50%,-50%) scale(.9); } 50% { opacity:1; transform:translate(-50%,-50%) scale(1.1); } }
+.loading-steps { list-style:none; text-align:left; display:inline-block; margin-top:8px; }
+.loading-steps li { font-size:12px; color:var(--text-muted); padding:4px 0; transition:all .3s; display:flex; align-items:center; gap:8px; }
+.loading-steps li.active { color:var(--primary); font-weight:600; }
+.loading-steps li .check { display:inline-block; width:16px; height:16px; border-radius:50%; border:1.5px solid var(--border); text-align:center; line-height:14px; font-size:10px; flex-shrink:0; }
+.loading-steps li.done .check { background:var(--success); border-color:var(--success); color:#fff; }
+.loading-steps li.active .check { border-color:var(--primary); animation:pulse-dot 1s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { box-shadow:0 0 0 0 rgba(120,60,40,0.3); } 50% { box-shadow:0 0 0 6px rgba(120,60,40,0); } }
+
+/* ===== Toast / Inline Error ===== */
+.toast { position:fixed; top:80px; right:24px; z-index:300; padding:14px 20px; border-radius:var(--radius-sm); font-size:13px; font-weight:500; box-shadow:var(--shadow-lg); transform:translateX(120%); transition:transform .4s var(--ease-out); max-width:400px; }
+.toast.active { transform:translateX(0); }
+.toast.error { background:var(--danger); color:#fff; }
+.toast.info { background:var(--primary); color:#fff; }
+.toast.warning { background:var(--warning); color:#fff; }
 
 /* ===== Results ===== */
 .result-panel { display:none; }
@@ -245,9 +264,23 @@ a:hover { color: var(--primary-hover); }
 
         <!-- Loading -->
         <div id="loading" class="loading">
-          <div class="spinner"></div>
-          <div style="color:var(--text-muted); font-size:13px;">5つの理論的フレームワークで分析中...</div>
+          <div class="loading-visual">
+            <div class="loading-ring"></div>
+            <div class="loading-ring-inner"></div>
+            <div class="loading-icon">&#9883;</div>
+          </div>
+          <div style="color:var(--text); font-size:14px; font-weight:600; margin-bottom:12px;">構造的変化点を分析中</div>
+          <ul class="loading-steps" id="loadingSteps">
+            <li class="active" id="step1"><span class="check"></span>Scheffer臨界遷移論で評価</li>
+            <li id="step2"><span class="check"></span>Geels多層的視座で評価</li>
+            <li id="step3"><span class="check"></span>Perez技術革命波動論で評価</li>
+            <li id="step4"><span class="check"></span>North制度経済学で評価</li>
+            <li id="step5"><span class="check"></span>Dixit-Pindyckリアルオプションで評価</li>
+          </ul>
         </div>
+
+        <!-- Toast container -->
+        <div id="toast" class="toast"></div>
 
         <!-- Results -->
         <div id="results" class="result-panel">
@@ -489,26 +522,59 @@ function normalizeResult(r) {
   return r;
 }
 
+// ===== Toast =====
+function showToast(msg, type='error', duration=5000) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast ' + type + ' active';
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => el.classList.remove('active'), duration);
+}
+
+// ===== Loading Steps Animation =====
+let _stepInterval = null;
+function startLoadingSteps() {
+  const steps = document.querySelectorAll('#loadingSteps li');
+  steps.forEach(s => { s.className = ''; });
+  if (steps[0]) steps[0].className = 'active';
+  let idx = 0;
+  _stepInterval = setInterval(() => {
+    if (steps[idx]) { steps[idx].className = 'done'; steps[idx].querySelector('.check').textContent = '\u2713'; }
+    idx++;
+    if (idx < steps.length) { steps[idx].className = 'active'; }
+    else { clearInterval(_stepInterval); _stepInterval = null; }
+  }, 4000);
+}
+function stopLoadingSteps() {
+  if (_stepInterval) { clearInterval(_stepInterval); _stepInterval = null; }
+  document.querySelectorAll('#loadingSteps li').forEach(s => {
+    s.className = 'done';
+    s.querySelector('.check').textContent = '\u2713';
+  });
+}
+
 // ===== Evaluate =====
 async function evaluate() {
   // Check file:// protocol
   if (location.protocol === 'file:') {
-    alert('file://プロトコルではAPI通信ができません。\n\n以下のいずれかで開いてください:\n1. python3 -m http.server 8765 でローカルサーバーを起動\n2. GitHub Pages (https://yuyanishimura0312.github.io/structural-inflection-scorer/)');
+    showToast('file://では動作しません。GitHub Pages版を使ってください', 'warning', 8000);
     return;
   }
   const theme = document.getElementById('themeInput').value.trim();
-  if (!theme) return alert('研究テーマを入力してください');
+  if (!theme) { showToast('研究テーマを入力してください', 'info'); return; }
   const apiKey = getApiKey();
-  if (!apiKey) { openSettings(); return alert('APIキーを設定してください'); }
+  if (!apiKey) { openSettings(); showToast('APIキーを設定してください（歯車アイコン）', 'warning', 8000); return; }
 
   const model = document.getElementById('modelSelect').value;
   const btn = document.getElementById('evalBtn');
 
   // UI state
   btn.disabled = true;
+  btn.textContent = '分析中...';
   document.getElementById('placeholder').style.display = 'none';
   document.getElementById('results').classList.remove('active');
   document.getElementById('loading').classList.add('active');
+  startLoadingSteps();
 
   try {
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
@@ -588,10 +654,12 @@ async function evaluate() {
     renderResults(result);
 
   } catch (err) {
-    alert('エラー: ' + err.message);
+    showToast(err.message, 'error', 8000);
     document.getElementById('placeholder').style.display = 'block';
   } finally {
+    stopLoadingSteps();
     btn.disabled = false;
+    btn.textContent = '変化点を評価';
     document.getElementById('loading').classList.remove('active');
   }
 }
