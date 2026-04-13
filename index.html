@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Structural Inflection Point Scorer</title>
 <link rel="icon" href="https://esse-sense.com/favicon.ico">
+<script src="env.js"></script>
 <style>
 /* ===== Miratuku CI Design System ===== */
 :root {
@@ -895,12 +896,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderHistory();
 
-  // Auto-show settings if no API key
+  // Pre-set API key from env.js if not already configured
+  if (!getApiKey() && window.__SIP_DEFAULT_KEY) {
+    localStorage.setItem(API_KEY_KEY, window.__SIP_DEFAULT_KEY);
+    console.log('[SIP Scorer] API key auto-configured from env.js');
+  }
+  // Show settings only if still no key
   if (!getApiKey()) {
     openSettings();
     showToast('APIキーを設定してください', 'warning', 10000);
   }
-  console.log('[SIP Scorer] Init complete, API key:', getApiKey() ? 'set (' + getApiKey().slice(0,12) + '...)' : 'NOT SET');
+  console.log('[SIP Scorer] Init complete, API key:', getApiKey() ? 'set' : 'NOT SET');
 });
 </script>
 </body>
