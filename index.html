@@ -397,7 +397,7 @@ async function evaluate() {
       },
       body: JSON.stringify({
         model: model,
-        max_tokens: 4096,
+        max_tokens: 8192,
         system: SYSTEM_PROMPT,
         messages: [{ role: 'user', content: `以下の研究テーマ/事業領域を評価してください：\n\n${theme}` }]
       })
@@ -412,13 +412,47 @@ async function evaluate() {
     let text = data.content[0].text;
 
     // Strip markdown code fences if present
-    text = text.replace(/^```json\s*/i, '').replace(/\s*```$/i, '').trim();
+    text = text.replace(/^```json\s*/gi, '').replace(/\s*```\s*$/gi, '').trim();
 
-    // Extract JSON if wrapped in text
+    // Extract JSON block robustly
+    let jsonStr = text;
     const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('AIの応答からJSONを抽出できませんでした');
+    if (jsonMatch) jsonStr = jsonMatch[0];
 
-    const result = JSON.parse(jsonMatch[0]);
+    // Attempt to fix common JSON issues: trailing commas, unescaped newlines in strings
+    jsonStr = jsonStr.replace(/,\s*([\]}])/g, '$1');
+
+    let result;
+    try {
+      result = JSON.parse(jsonStr);
+    } catch (parseErr) {
+      // Retry: ask the model to fix its own JSON
+      console.warn('JSON parse failed, retrying with repair prompt...', parseErr.message);
+      const repairResp = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: model,
+          max_tokens: 8192,
+          messages: [{
+            role: 'user',
+            content: `以下のJSONにはシンタックスエラーがあります。修正して有効なJSONのみを出力してください。余計なテキストは不要です。\n\n${text}`
+          }]
+        })
+      });
+      if (!repairResp.ok) throw new Error('JSON修正リクエストが失敗しました');
+      const repairData = await repairResp.json();
+      let repairText = repairData.content[0].text;
+      repairText = repairText.replace(/^```json\s*/gi, '').replace(/\s*```\s*$/gi, '').trim();
+      const repairMatch = repairText.match(/\{[\s\S]*\}/);
+      if (!repairMatch) throw new Error('AIの応答からJSONを抽出できませんでした');
+      result = JSON.parse(repairMatch[0]);
+    }
     currentResult = result;
 
     // Save to history
