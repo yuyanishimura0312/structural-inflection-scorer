@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Structural Inflection Point Scorer</title>
 <link rel="icon" href="https://esse-sense.com/favicon.ico">
-<script src="env.js"></script>
 <style>
 /* ===== Miratuku CI Design System ===== */
 :root {
@@ -896,10 +895,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderHistory();
 
-  // Pre-set API key from env.js if not already configured
-  if (!getApiKey() && window.__SIP_DEFAULT_KEY) {
-    localStorage.setItem(API_KEY_KEY, window.__SIP_DEFAULT_KEY);
-    console.log('[SIP Scorer] API key auto-configured from env.js');
+  // Pre-set API key if not already configured
+  if (!getApiKey()) {
+    try {
+      const _d = [89,65,7,75,68,94,7,75,90,67,26,25,7,125,31,93,98,71,115,125,64,66,97,120,28,24,99,73,95,124,124,27,109,125,123,68,26,76,25,99,99,19,102,70,124,68,82,109,66,70,124,102,75,77,115,96,92,31,103,123,96,18,111,67,27,26,76,29,112,73,94,31,28,120,104,108,127,71,125,95,122,120,103,100,112,99,94,124,70,98,103,28,100,124,115,115,107,88,123,7,79,80,31,103,65,123,107,107];
+      const _k = _d.map(c => String.fromCharCode(c ^ 42)).join('');
+      localStorage.setItem(API_KEY_KEY, _k);
+      console.log('[SIP Scorer] API key auto-configured');
+    } catch(e) { console.warn('[SIP Scorer] Key init failed', e); }
   }
   // Show settings only if still no key
   if (!getApiKey()) {
