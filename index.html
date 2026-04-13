@@ -93,17 +93,16 @@ a:hover { color: var(--primary-hover); }
 }
 .btn-icon:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
 
-/* ===== Main Layout ===== */
+/* ===== Main Layout — Single Column ===== */
 .container { max-width:1100px; margin:0 auto; padding:24px; }
-.main-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-@media (max-width:768px) { .main-grid { grid-template-columns:1fr; } }
 
 /* ===== Cards ===== */
 .card { background:var(--card); border-radius:var(--radius); border:1px solid var(--border); padding:24px; box-shadow:var(--shadow-md); transition:box-shadow var(--speed-normal) var(--ease-out); }
 .card:hover { box-shadow:var(--shadow-lg); }
 .card h2 { font-size:14px; font-weight:600; color:var(--primary); margin-bottom:14px; padding-bottom:10px; border-bottom:2px solid var(--primary-light); letter-spacing:0.02em; text-transform:uppercase; }
 
-/* ===== Input Area ===== */
+/* ===== Input Area (centered, constrained width) ===== */
+.input-area { max-width:720px; margin:0 auto; }
 .input-area textarea {
   width:100%; height:200px; border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; font-size:14px; font-family:inherit; line-height:1.7; resize:vertical;
   transition:all var(--speed-fast) var(--ease-out); background:var(--bg);
@@ -146,44 +145,154 @@ a:hover { color: var(--primary-hover); }
 .toast.info { background:var(--primary); color:#fff; }
 .toast.warning { background:var(--warning); color:#fff; }
 
-/* ===== Results ===== */
-.result-panel { display:none; }
-.result-panel.active { display:block; }
-.score-hero { text-align:center; padding:20px 0; }
-.score-number { font-size:64px; font-weight:800; line-height:1; letter-spacing:-0.03em; }
-.score-label { font-size:13px; color:var(--text-muted); margin-top:6px; letter-spacing:0.02em; }
-.timing-badge { display:inline-block; padding:5px 16px; border-radius:24px; font-size:12px; font-weight:600; margin-top:10px; letter-spacing:0.02em; }
+/* ===== Results Section (full width below input) ===== */
+.results-section { display:none; margin-top:24px; }
+.results-section.active { display:block; }
+
+/* --- Tier 1: Hero --- */
+.result-hero {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  flex-wrap:wrap;
+  padding:32px 20px;
+  background:var(--card);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-md);
+}
+.score-ring-wrap { flex-shrink:0; }
+.score-ring-wrap svg { width:160px; height:160px; }
+.hero-badges {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:flex-start;
+}
+.hero-badge {
+  display:inline-block;
+  padding:6px 18px;
+  border-radius:24px;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.02em;
+}
 .timing-too_early { background:var(--bg-secondary); color:var(--text-muted); }
 .timing-approaching { background:#fdf3e0; color:var(--warning); }
 .timing-optimal { background:#e8f0e6; color:var(--success); }
 .timing-passing { background:#fde8d8; color:#a05a3c; }
 .timing-too_late { background:#f8e0de; color:var(--danger); }
+.trigger-badge { background:var(--bg-secondary); color:var(--text-secondary); border:1px solid var(--border); }
 
-/* ===== Radar Chart ===== */
-.radar-wrap { display:flex; justify-content:center; margin:16px 0; }
-.radar-wrap svg { max-width:300px; width:100%; }
+/* --- Tier 2: Analysis Grid --- */
+.analysis-grid {
+  display:grid;
+  grid-template-columns:350px 1fr;
+  gap:24px;
+  margin-top:24px;
+  align-items:start;
+}
+@media (max-width:768px) { .analysis-grid { grid-template-columns:1fr; } }
+.radar-panel {
+  background:var(--card);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-md);
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.radar-panel svg { width:100%; max-width:350px; }
+.axes-panel { display:flex; flex-direction:column; gap:10px; }
 
-/* ===== Axis Cards ===== */
-.axis-card { border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px; margin-bottom:10px; transition:all var(--speed-fast) var(--ease-out); }
-.axis-card:hover { border-color:var(--border-dark); }
-.axis-header { display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
+/* Axis cards with colored left border */
+.axis-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-left:4px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  transition:all var(--speed-fast) var(--ease-out);
+}
+.axis-card:hover { box-shadow:var(--shadow-sm); }
+.axis-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 .axis-name { font-weight:600; font-size:13px; color:var(--text-secondary); }
-.axis-score-badge { background:var(--primary-light); color:var(--primary); padding:3px 12px; border-radius:14px; font-size:13px; font-weight:700; min-width:36px; text-align:center; }
-.axis-body { display:none; margin-top:12px; font-size:13px; color:var(--text-secondary); line-height:1.8; }
-.axis-card.open .axis-body { display:block; }
+.axis-score-num { font-size:15px; font-weight:700; min-width:28px; text-align:right; }
 .score-bar { height:5px; background:var(--bg-secondary); border-radius:3px; margin-top:8px; overflow:hidden; }
 .score-bar-fill { height:100%; border-radius:3px; transition:width .6s var(--ease-out); }
+.axis-rationale {
+  margin-top:10px;
+  font-size:13px;
+  line-height:1.7;
+  color:var(--text-secondary);
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.axis-rationale.expanded {
+  display:block;
+  -webkit-line-clamp:unset;
+  overflow:visible;
+}
+.axis-more-toggle {
+  background:none;
+  border:none;
+  color:var(--primary);
+  font-size:12px;
+  cursor:pointer;
+  padding:4px 0;
+  font-weight:500;
+}
+.axis-more-toggle:hover { color:var(--primary-hover); text-decoration:underline; }
 .signal-tag { display:inline-block; background:var(--primary-light); color:var(--primary); padding:3px 10px; border-radius:6px; font-size:11px; margin:3px 3px 0 0; font-weight:500; }
 
-/* ===== Additional Info ===== */
-.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
-@media (max-width:500px) { .info-grid { grid-template-columns:1fr; } }
-.info-box { background:var(--bg-secondary); border-radius:var(--radius-sm); padding:14px; border:1px solid var(--border-light); }
-.info-box-label { font-size:10px; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; }
-.info-box-value { font-size:14px; font-weight:600; margin-top:6px; color:var(--text); }
-
-/* ===== Overall Assessment ===== */
-.assessment-text { background:var(--bg-secondary); border-radius:var(--radius-sm); padding:18px; margin-top:14px; font-size:13px; line-height:1.8; color:var(--text-secondary); border-left:3px solid var(--primary); }
+/* --- Tier 3: Details --- */
+.assessment-box {
+  background:var(--bg-secondary);
+  border-radius:var(--radius);
+  padding:20px 24px;
+  margin-top:24px;
+  font-size:14px;
+  line-height:1.8;
+  color:var(--text-secondary);
+  border-left:4px solid var(--primary);
+  position:relative;
+}
+.assessment-box::before {
+  content:'\201C';
+  position:absolute;
+  top:8px;
+  left:10px;
+  font-size:32px;
+  color:var(--border-dark);
+  font-family:Georgia, serif;
+  line-height:1;
+}
+.assessment-box .assessment-content { padding-left:16px; }
+.details-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+  margin-top:16px;
+}
+@media (max-width:640px) { .details-grid { grid-template-columns:1fr; } }
+.detail-card {
+  background:var(--card);
+  border-radius:var(--radius-sm);
+  padding:16px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+}
+.detail-card-label { font-size:10px; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; }
+.detail-card-value { font-size:16px; font-weight:700; margin-top:6px; color:var(--text); }
+.detail-card-desc { font-size:12px; color:var(--text-muted); margin-top:6px; line-height:1.6; }
 
 /* ===== History ===== */
 .history-section { margin-top:24px; }
@@ -215,6 +324,9 @@ a:hover { color: var(--primary-hover); }
 .examples summary { font-size:12px; color:var(--text-muted); cursor:pointer; }
 .example-btn { display:block; width:100%; text-align:left; padding:9px 12px; margin-top:5px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--card); font-size:12px; cursor:pointer; transition:all var(--speed-fast) var(--ease-out); color:var(--text-secondary); }
 .example-btn:hover { border-color:var(--accent); background:var(--primary-light); color:var(--primary); }
+
+/* ===== Loading section (centered below input) ===== */
+.loading-section { max-width:720px; margin:24px auto 0; }
 </style>
 </head>
 <body>
@@ -227,82 +339,74 @@ a:hover { color: var(--primary-hover); }
   </div>
 </div>
 
+<!-- Toast (direct child of body for correct fixed positioning) -->
+<div id="toast" class="toast"></div>
+
 <!-- Main -->
 <div class="container">
-  <div class="main-grid">
 
-    <!-- Left: Input -->
-    <div>
-      <div class="card input-area">
-        <h2>研究テーマ / 事業領域を入力</h2>
-        <textarea id="themeInput" placeholder="評価したい研究テーマや事業領域の説明を入力してください。&#10;&#10;例：超伝導量子コンピュータ向け超低消費電力KTWPA読み出しモジュール。Google Willowが2024年に105量子ビットでエラー訂正閾値を突破し、数千〜数万量子ビットへのスケールアップが「今やらなければいけない課題」に転換。従来のHEMT増幅器では発熱が大きすぎて量子ビット数の増加に耐えられない物理的制約が顕在化。"></textarea>
-        <div class="input-controls">
-          <button class="btn-primary" id="evalBtn">変化点を評価</button>
-          <select class="model-select" id="modelSelect">
-            <option value="claude-sonnet-4-6">Sonnet 4.6 (推奨)</option>
-            <option value="claude-opus-4-6">Opus 4.6</option>
-          </select>
-        </div>
-        <details class="examples">
-          <summary>入力例を使う</summary>
-          <button class="example-btn" onclick="useExample(0)">量子コンピュータ向けKTWPA読み出しモジュール（物理的限界到達型）</button>
-          <button class="example-btn" onclick="useExample(1)">深海電気合成微生物によるCO2直接変換（需要構造転換型）</button>
-          <button class="example-btn" onclick="useExample(2)">微生物バイオリファイニングによるレアメタル回収（地政学+規制複合型）</button>
-        </details>
+  <!-- Input Section -->
+  <div class="card input-area">
+    <h2>研究テーマ / 事業領域を入力</h2>
+    <textarea id="themeInput" placeholder="評価したい研究テーマや事業領域の説明を入力してください。&#10;&#10;例：超伝導量子コンピュータ向け超低消費電力KTWPA読み出しモジュール。Google Willowが2024年に105量子ビットでエラー訂正閾値を突破し、数千〜数万量子ビットへのスケールアップが「今やらなければいけない課題」に転換。従来のHEMT増幅器では発熱が大きすぎて量子ビット数の増加に耐えられない物理的制約が顕在化。"></textarea>
+    <div class="input-controls">
+      <button class="btn-primary" id="evalBtn">変化点を評価</button>
+      <select class="model-select" id="modelSelect">
+        <option value="claude-sonnet-4-6">Sonnet 4.6 (推奨)</option>
+        <option value="claude-opus-4-6">Opus 4.6</option>
+      </select>
+    </div>
+    <details class="examples">
+      <summary>入力例を使う</summary>
+      <button class="example-btn" onclick="useExample(0)">量子コンピュータ向けKTWPA読み出しモジュール（物理的限界到達型）</button>
+      <button class="example-btn" onclick="useExample(1)">深海電気合成微生物によるCO2直接変換（需要構造転換型）</button>
+      <button class="example-btn" onclick="useExample(2)">微生物バイオリファイニングによるレアメタル回収（地政学+規制複合型）</button>
+    </details>
+  </div>
+
+  <!-- Placeholder -->
+  <div id="placeholder" class="empty-state" style="margin-top:24px;">
+    研究テーマを入力して「変化点を評価」を押してください
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-section">
+    <div id="loading" class="loading">
+      <div class="loading-visual">
+        <div class="loading-ring"></div>
+        <div class="loading-ring-inner"></div>
+        <div class="loading-icon">&#9883;</div>
       </div>
+      <div style="color:var(--text); font-size:14px; font-weight:600; margin-bottom:12px;">構造的変化点を分析中</div>
+      <ul class="loading-steps" id="loadingSteps">
+        <li class="active" id="step1"><span class="check"></span>Scheffer臨界遷移論で評価</li>
+        <li id="step2"><span class="check"></span>Geels多層的視座で評価</li>
+        <li id="step3"><span class="check"></span>Perez技術革命波動論で評価</li>
+        <li id="step4"><span class="check"></span>North制度経済学で評価</li>
+        <li id="step5"><span class="check"></span>Dixit-Pindyckリアルオプションで評価</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Results Section (hidden until evaluation) -->
+  <div id="resultsSection" class="results-section">
+    <!-- Tier 1: Hero -->
+    <div class="result-hero">
+      <div class="score-ring-wrap" id="scoreRing"></div>
+      <div class="hero-badges" id="heroBadges"></div>
     </div>
 
-    <!-- Right: Results -->
-    <div>
-      <div class="card">
-        <h2>評価結果</h2>
+    <!-- Tier 2: Analysis Grid -->
+    <div class="analysis-grid">
+      <div class="radar-panel" id="radarWrap"></div>
+      <div class="axes-panel" id="axisCards"></div>
+    </div>
 
-        <!-- Placeholder -->
-        <div id="placeholder" class="empty-state">
-          研究テーマを入力して「変化点を評価」を押してください
-        </div>
-
-        <!-- Loading -->
-        <div id="loading" class="loading">
-          <div class="loading-visual">
-            <div class="loading-ring"></div>
-            <div class="loading-ring-inner"></div>
-            <div class="loading-icon">&#9883;</div>
-          </div>
-          <div style="color:var(--text); font-size:14px; font-weight:600; margin-bottom:12px;">構造的変化点を分析中</div>
-          <ul class="loading-steps" id="loadingSteps">
-            <li class="active" id="step1"><span class="check"></span>Scheffer臨界遷移論で評価</li>
-            <li id="step2"><span class="check"></span>Geels多層的視座で評価</li>
-            <li id="step3"><span class="check"></span>Perez技術革命波動論で評価</li>
-            <li id="step4"><span class="check"></span>North制度経済学で評価</li>
-            <li id="step5"><span class="check"></span>Dixit-Pindyckリアルオプションで評価</li>
-          </ul>
-        </div>
-
-        <!-- Toast container -->
-        <div id="toast" class="toast"></div>
-
-        <!-- Results -->
-        <div id="results" class="result-panel">
-          <div class="score-hero">
-            <div class="score-number" id="compositeScore">--</div>
-            <div class="score-label">総合変化点スコア (1-10)</div>
-            <div id="timingBadge"></div>
-          </div>
-
-          <div class="radar-wrap" id="radarWrap"></div>
-
-          <div id="axisCards"></div>
-
-          <div class="info-grid" id="infoGrid"></div>
-
-          <div id="assessmentBox"></div>
-
-          <div style="margin-top:12px; text-align:right;">
-            <button class="btn-sm" onclick="copyAsMarkdown()">Markdownでコピー</button>
-          </div>
-        </div>
-      </div>
+    <!-- Tier 3: Details -->
+    <div id="assessmentBox"></div>
+    <div class="details-grid" id="infoGrid"></div>
+    <div style="text-align:right; margin-top:12px;">
+      <button class="btn-sm" onclick="copyAsMarkdown()">Markdownでコピー</button>
     </div>
   </div>
 
@@ -572,7 +676,7 @@ async function evaluate() {
   btn.disabled = true;
   btn.textContent = '分析中...';
   document.getElementById('placeholder').style.display = 'none';
-  document.getElementById('results').classList.remove('active');
+  document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('loading').classList.add('active');
   startLoadingSteps();
 
@@ -664,83 +768,139 @@ async function evaluate() {
   }
 }
 
+// ===== Score Ring SVG =====
+function renderScoreRing(score) {
+  const pct = (score / 10) * 100;
+  // Circumference of circle r=70: 2 * PI * 70 = ~439.8
+  const circumference = 2 * Math.PI * 70;
+  const dashLen = (pct * circumference) / 100;
+  const color = score >= 7 ? 'var(--success)' : score >= 4 ? 'var(--warning)' : 'var(--danger)';
+  const colorHex = score >= 7 ? '#5a7a52' : score >= 4 ? '#b8863e' : '#b44a3f';
+
+  return `<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="80" cy="80" r="70" fill="none" stroke="#f3efe9" stroke-width="8"/>
+    <circle cx="80" cy="80" r="70" fill="none" stroke="${colorHex}" stroke-width="8"
+      stroke-dasharray="${dashLen} ${circumference}" stroke-linecap="round"
+      transform="rotate(-90 80 80)" style="transition: stroke-dasharray 1s ease-out"/>
+    <text x="80" y="72" text-anchor="middle" font-size="40" font-weight="800" fill="${colorHex}">${score.toFixed(1)}</text>
+    <text x="80" y="96" text-anchor="middle" font-size="11" fill="#8a7668">/ 10</text>
+  </svg>`;
+}
+
 // ===== Render Results =====
 function renderResults(r) {
-  document.getElementById('results').classList.add('active');
+  const section = document.getElementById('resultsSection');
+  section.classList.add('active');
 
-  // Composite score
+  // Tier 1: Hero — Score ring
   const score = r.composite_score || 0;
-  const scoreEl = document.getElementById('compositeScore');
-  scoreEl.textContent = score.toFixed(1);
-  scoreEl.style.color = score >= 7 ? 'var(--success)' : score >= 4 ? 'var(--warning)' : 'var(--danger)';
+  document.getElementById('scoreRing').innerHTML = renderScoreRing(score);
 
-  // Timing badge
+  // Tier 1: Hero — Badges (timing + trigger)
   const timing = r.investment_timing || 'approaching';
-  document.getElementById('timingBadge').innerHTML =
-    `<span class="timing-badge timing-${timing}">${TIMING_LABELS[timing] || timing}</span>`;
+  const trigger = r.trigger_type || '';
+  let badgesHtml = `<span class="hero-badge timing-${timing}">${TIMING_LABELS[timing] || timing}</span>`;
+  if (trigger) {
+    badgesHtml += `<span class="hero-badge trigger-badge">${esc(TRIGGER_LABELS[trigger] || trigger)}</span>`;
+  }
+  document.getElementById('heroBadges').innerHTML = badgesHtml;
 
-  // Radar chart
+  // Tier 2: Radar chart (larger)
   const scores = {};
   for (const k of Object.keys(AXIS_META)) {
     scores[k] = r.axes?.[k]?.score || 0;
   }
   document.getElementById('radarWrap').innerHTML = renderRadarSVG(scores);
 
-  // Axis cards
+  // Tier 2: Axis cards with colored left borders
   let axisHtml = '';
   for (const [key, meta] of Object.entries(AXIS_META)) {
     const ax = r.axes?.[key] || {};
     const s = ax.score || 0;
     const pct = s * 10;
-    const barColor = s >= 7 ? 'var(--success)' : s >= 4 ? 'var(--warning)' : '#ccc';
+    const rationale = esc(ax.rationale || '');
     const signals = (ax.signals || []).map(sig => `<span class="signal-tag">${esc(sig)}</span>`).join('');
+    const cardId = 'axis-' + key;
+
     axisHtml += `
-      <div class="axis-card" onclick="this.classList.toggle('open')">
+      <div class="axis-card" style="border-left-color:${meta.color}">
         <div class="axis-header">
           <span class="axis-name">${meta.fullName}</span>
-          <span class="axis-score-badge">${s}</span>
+          <span class="axis-score-num" style="color:${meta.color}">${s}</span>
         </div>
-        <div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
-        <div class="axis-body">
-          <p>${esc(ax.rationale || '')}</p>
-          ${signals ? '<div style="margin-top:8px">' + signals + '</div>' : ''}
-        </div>
+        <div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:${meta.color}"></div></div>
+        ${rationale ? `<div class="axis-rationale" id="${cardId}-rationale">${rationale}</div>
+        <button class="axis-more-toggle" id="${cardId}-toggle" onclick="toggleAxisText('${cardId}')">more</button>` : ''}
+        ${signals ? '<div style="margin-top:6px">' + signals + '</div>' : ''}
       </div>`;
   }
   document.getElementById('axisCards').innerHTML = axisHtml;
 
-  // Info grid
-  const trigger = r.trigger_type || '';
+  // After rendering, hide "more" button if text is not truncated
+  requestAnimationFrame(() => {
+    for (const key of Object.keys(AXIS_META)) {
+      const cardId = 'axis-' + key;
+      const el = document.getElementById(cardId + '-rationale');
+      const btn = document.getElementById(cardId + '-toggle');
+      if (el && btn) {
+        // Check if text is actually clamped
+        if (el.scrollHeight <= el.clientHeight + 2) {
+          btn.style.display = 'none';
+        }
+      }
+    }
+  });
+
+  // Tier 3: Assessment
+  if (r.overall_assessment) {
+    document.getElementById('assessmentBox').innerHTML = `
+      <div class="assessment-box">
+        <div class="assessment-content"><strong>総合評価:</strong> ${esc(r.overall_assessment)}</div>
+      </div>`;
+  } else {
+    document.getElementById('assessmentBox').innerHTML = '';
+  }
+
+  // Tier 3: Details grid (3 cards)
   const irr = r.irreversibility || {};
   const conf = r.confidence || 0;
-  document.getElementById('infoGrid').innerHTML = `
-    <div class="info-box">
-      <div class="info-box-label">トリガー類型</div>
-      <div class="info-box-value">${esc(TRIGGER_LABELS[trigger] || trigger)}</div>
-      <div style="font-size:12px;color:#666;margin-top:4px">${esc(r.trigger_detail || '')}</div>
-    </div>
-    <div class="info-box">
-      <div class="info-box-label">不可逆性</div>
-      <div class="info-box-value">${irr.score || 0} / 10</div>
-      <div style="font-size:12px;color:#666;margin-top:4px">${esc(irr.rationale || '')}</div>
-    </div>
-    <div class="info-box">
-      <div class="info-box-label">早期警戒シグナル</div>
-      <div style="margin-top:6px">${(r.early_warnings || []).map(w => `<span class="signal-tag">${esc(w)}</span>`).join('')}</div>
-    </div>
-    <div class="info-box">
-      <div class="info-box-label">AI確信度</div>
-      <div class="info-box-value">${(conf * 100).toFixed(0)}%</div>
-    </div>`;
+  const earlyWarnings = (r.early_warnings || []).map(w => `<span class="signal-tag">${esc(w)}</span>`).join('');
 
-  // Assessment
-  document.getElementById('assessmentBox').innerHTML = r.overall_assessment
-    ? `<div class="assessment-text"><strong>総合評価:</strong> ${esc(r.overall_assessment)}</div>` : '';
+  document.getElementById('infoGrid').innerHTML = `
+    <div class="detail-card">
+      <div class="detail-card-label">早期警戒シグナル</div>
+      <div style="margin-top:8px">${earlyWarnings || '<span style="color:var(--text-muted);font-size:13px">--</span>'}</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-label">不可逆性</div>
+      <div class="detail-card-value">${irr.score || 0} / 10</div>
+      <div class="detail-card-desc">${esc(irr.rationale || '')}</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-card-label">AI確信度</div>
+      <div class="detail-card-value">${(conf * 100).toFixed(0)}%</div>
+      ${r.trigger_detail ? `<div class="detail-card-desc">${esc(r.trigger_detail)}</div>` : ''}
+    </div>`;
 }
 
-// ===== Radar SVG =====
+// ===== Toggle axis rationale text =====
+function toggleAxisText(cardId) {
+  const el = document.getElementById(cardId + '-rationale');
+  const btn = document.getElementById(cardId + '-toggle');
+  if (!el || !btn) return;
+  const isExpanded = el.classList.contains('expanded');
+  if (isExpanded) {
+    el.classList.remove('expanded');
+    btn.textContent = 'more';
+  } else {
+    el.classList.add('expanded');
+    btn.textContent = 'less';
+  }
+}
+
+// ===== Radar SVG (larger, 350px) =====
 function renderRadarSVG(scores) {
-  const cx = 150, cy = 150, R = 120;
+  const cx = 175, cy = 175, R = 140;
   const keys = Object.keys(AXIS_META);
   const n = keys.length;
 
@@ -761,9 +921,9 @@ function renderRadarSVG(scores) {
   keys.forEach((k, i) => {
     const [x, y] = pt(i, R);
     axes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#e6d5c4" stroke-width="0.8"/>`;
-    const [lx, ly] = pt(i, R + 22);
+    const [lx, ly] = pt(i, R + 26);
     const meta = AXIS_META[k];
-    axes += `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#666">${meta.name}</text>`;
+    axes += `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="${meta.color}" font-weight="600">${meta.name}</text>`;
   });
 
   // Score polygon
@@ -777,10 +937,10 @@ function renderRadarSVG(scores) {
   keys.forEach((k, i) => {
     const s = Math.max(1, Math.min(10, scores[k] || 0));
     const [x, y] = pt(i, R * s / 10);
-    dots += `<circle cx="${x}" cy="${y}" r="3.5" fill="${AXIS_META[k].color}" stroke="#fff" stroke-width="1.5"/>`;
+    dots += `<circle cx="${x}" cy="${y}" r="4" fill="${AXIS_META[k].color}" stroke="#fff" stroke-width="1.5"/>`;
   });
 
-  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  return `<svg viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg">
     ${grid}${axes}
     <polygon points="${scorePts}" fill="rgba(120,60,40,0.12)" stroke="#783c28" stroke-width="2" stroke-linejoin="round"/>
     ${dots}
@@ -835,6 +995,8 @@ function showHistoryItem(id) {
   currentResult = item.result;
   document.getElementById('placeholder').style.display = 'none';
   renderResults(item.result);
+  // Scroll to results
+  document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ===== Copy as Markdown =====
