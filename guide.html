@@ -26,52 +26,133 @@
   --shadow-sm: 0 0 0 1px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.04);
   --shadow-md: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 8px rgba(0,0,0,0.06), 0 12px 20px rgba(0,0,0,0.04);
 }
-* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.8; letter-spacing: 0.01em;
+  background: var(--bg); color: var(--text); line-height: 1.85; letter-spacing: 0.01em;
+  font-size: 16px;
 }
+
+/* ── Progress Bar ── */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--primary); z-index: 200; transition: width 0.1s linear;
+}
+
+/* ── Header ── */
 .header {
   background: rgba(255,255,255,0.92); border-bottom: 1px solid var(--border);
   padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
   position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); backdrop-filter: blur(8px);
 }
 .header h1 { font-size: 17px; font-weight: 700; color: var(--primary); }
-.header h1 small { font-size: 12px; color: var(--text-muted); font-weight: 400; margin-left: 10px; }
+.header h1 small { font-size: 13px; color: var(--text-muted); font-weight: 400; margin-left: 10px; }
 .header a { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 500; }
 .header a:hover { text-decoration: underline; }
 
-.container { max-width: 760px; margin: 0 auto; padding: 32px 24px 64px; }
+/* ── Container ── */
+.container { max-width: 720px; margin: 0 auto; padding: 48px 32px 96px; }
 
-h2 { font-size: 20px; font-weight: 700; color: var(--primary); margin: 48px 0 16px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-light); }
-h3 { font-size: 16px; font-weight: 600; color: var(--text); margin: 28px 0 12px; }
-p { margin-bottom: 16px; font-size: 15px; }
+/* ── Typography ── */
+h2 {
+  font-size: 22px; font-weight: 800; color: var(--primary);
+  margin: 72px 0 16px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-light);
+  letter-spacing: -0.02em;
+  scroll-margin-top: 72px;
+}
+h2:first-of-type { margin-top: 48px; }
+h3 { font-size: 18px; font-weight: 700; color: var(--text); margin: 28px 0 12px; }
+p { margin-bottom: 16px; font-size: 16px; }
 
-.lead { font-size: 17px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.9; }
+.lead { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; line-height: 2.0; }
 
+/* ── Focus/Hover States ── */
+a:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+/* ── Card ── */
 .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
 .card-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 8px; }
 
-.axis-guide { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border-light); }
-.axis-guide:last-child { border-bottom: none; }
-.axis-color { width: 4px; min-height: 48px; border-radius: 2px; flex-shrink: 0; }
-.axis-guide-content { flex: 1; }
-.axis-guide-title { font-size: 14px; font-weight: 600; color: var(--text); }
-.axis-guide-theory { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-.axis-guide-desc { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.7; }
+/* ── TOC (inline) ── */
+.toc {
+  background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--primary);
+  border-radius: var(--radius); padding: 20px 24px; margin-bottom: 32px;
+}
+.toc-title { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.toc ol { list-style: none; counter-reset: toc-counter; margin: 0; padding: 0; }
+.toc ol li { counter-increment: toc-counter; }
+.toc ol li a {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 4px 0; font-size: 14px; color: var(--text-secondary); text-decoration: none;
+}
+.toc ol li a::before {
+  content: counter(toc-counter);
+  font-size: 11px; font-weight: 700; color: var(--primary); opacity: 0.6;
+  min-width: 16px;
+}
+.toc ol li a:hover { color: var(--primary); }
 
-.score-explain { display: flex; gap: 8px; margin: 8px 0; }
-.score-range { padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
-.score-high { background: #e8f0e6; color: var(--success); }
+/* ── Sticky Side TOC (desktop only) ── */
+.side-toc {
+  display: none; position: fixed; left: 32px; top: 120px;
+  width: 200px; font-size: 13px; z-index: 50;
+}
+.side-toc a {
+  display: block; padding: 6px 0 6px 12px;
+  color: var(--text-muted); text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.side-toc a:hover { color: var(--text-secondary); }
+.side-toc a.active { color: var(--primary); border-left-color: var(--primary); font-weight: 600; }
+@media (min-width: 1100px) {
+  .side-toc { display: block; }
+}
+
+/* ── Axis Guide Cards ── */
+.axis-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; }
+.axis-guide {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 24px; border-bottom: 1px solid var(--border-light);
+  transition: background 0.15s ease;
+}
+.axis-guide:last-child { border-bottom: none; }
+.axis-guide:hover { background: var(--bg-secondary); }
+.axis-color { width: 5px; min-height: 60px; border-radius: 2px; flex-shrink: 0; }
+.axis-guide-content { flex: 1; }
+.axis-guide-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.axis-guide-theory { font-size: 13px; color: var(--text-muted); margin-top: 2px; font-style: italic; }
+.axis-guide-desc { font-size: 14px; color: var(--text-secondary); margin-top: 6px; line-height: 1.85; }
+
+/* ── Score Range Cards ── */
+.score-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+.score-card { padding: 16px; border-radius: 10px; text-align: center; }
+.score-card-number { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.score-card-label { font-size: 14px; line-height: 1.6; }
+.score-card-action { font-size: 13px; margin-top: 8px; line-height: 1.6; }
+.score-high { background: #eaf4e8; color: var(--success); }
 .score-mid { background: #fdf3e0; color: var(--warning); }
 .score-low { background: var(--bg-secondary); color: var(--text-muted); }
+@media (max-width: 500px) { .score-grid { grid-template-columns: 1fr; } }
 
+/* ── Trigger Cards ── */
 .trigger-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
 @media (max-width: 600px) { .trigger-grid { grid-template-columns: 1fr; } }
-.trigger-card { background: var(--bg-secondary); border-radius: 8px; padding: 14px; border: 1px solid var(--border-light); }
+.trigger-card {
+  background: var(--bg-secondary); border-radius: 8px; padding: 14px;
+  border: 1px solid var(--border-light);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.trigger-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .trigger-card-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-.trigger-card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.trigger-card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
+/* ── Steps List ── */
 .steps-list { counter-reset: step; list-style: none; margin: 16px 0; }
 .steps-list li { counter-increment: step; padding: 12px 0 12px 48px; position: relative; border-bottom: 1px solid var(--border-light); font-size: 14px; }
 .steps-list li:last-child { border-bottom: none; }
@@ -82,44 +163,113 @@ p { margin-bottom: 16px; font-size: 15px; }
 }
 .steps-list li strong { color: var(--primary); }
 
-.tip-box { background: var(--primary-light); border-radius: 8px; padding: 16px 20px; margin: 16px 0; font-size: 13px; line-height: 1.8; }
+/* ── Tip Box ── */
+.tip-box {
+  background: var(--primary-light); border-radius: 8px;
+  padding: 20px 24px; margin: 24px 0;
+  font-size: 14px; line-height: 1.85;
+  border-left: 4px solid var(--primary);
+}
 .tip-box strong { color: var(--primary); }
+.tip-box.caution {
+  border-left-color: var(--warning);
+  background: #fdf8f0;
+}
 
-.toc { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 32px; }
-.toc-title { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
-.toc a { display: block; padding: 4px 0; font-size: 14px; color: var(--text-secondary); text-decoration: none; }
-.toc a:hover { color: var(--primary); }
+/* ── Timing Table ── */
+.timing-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.timing-table td { padding: 12px 0; vertical-align: top; }
+.timing-table tr { border-bottom: 1px solid var(--border-light); }
+.timing-table tr:last-child { border-bottom: none; }
+.timing-label { font-weight: 600; width: 120px; white-space: nowrap; }
+.timing-label .dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 6px; vertical-align: middle;
+}
+.timing-desc { padding-left: 12px; }
+.timing-action { padding-left: 12px; font-size: 13px; color: var(--text-secondary); }
+
+/* ── Misread List ── */
+.misread-list { list-style: none; margin: 16px 0; padding: 0; }
+.misread-list li {
+  padding: 12px 0 12px 24px; position: relative;
+  border-bottom: 1px solid var(--border-light); font-size: 14px; line-height: 1.85;
+}
+.misread-list li:last-child { border-bottom: none; }
+.misread-list li::before {
+  content: ""; position: absolute; left: 0; top: 18px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--warning);
+}
+
+/* ── Back-to-top ── */
+.back-to-top {
+  position: fixed; bottom: 32px; right: 32px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  border: none; cursor: pointer;
+  font-size: 20px; line-height: 1;
+  box-shadow: var(--shadow-md);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: #5c2e1e; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container { padding: 32px 20px 64px; }
+}
 </style>
 </head>
 <body>
+
+<div class="progress-bar" id="progressBar"></div>
 
 <div class="header">
   <h1>使い方ガイド<small>Structural Inflection Point Scorer</small></h1>
   <a href="index.html">スコアラーに戻る</a>
 </div>
 
+<!-- Sticky Side TOC (desktop only) -->
+<nav class="side-toc" id="sideToc">
+  <a href="#what" data-section="what">なぜ「構造変化」で測るのか</a>
+  <a href="#howto" data-section="howto">使い方</a>
+  <a href="#axes" data-section="axes">5つの評価軸</a>
+  <a href="#scores" data-section="scores">スコアの読み方</a>
+  <a href="#triggers" data-section="triggers">トリガー類型</a>
+  <a href="#timing" data-section="timing">投資タイミング判定</a>
+  <a href="#misread" data-section="misread">スコアの誤読を防ぐために</a>
+  <a href="#tips" data-section="tips">効果的な使い方のコツ</a>
+</nav>
+
 <div class="container">
 
   <p class="lead">
-    このツールは、研究テーマや事業領域が「構造的変化点」にどれだけ近いかをAIが評価するスコアリングツールです。5つの学術理論に基づく多角的な分析により、技術の成熟度ではなく「外部環境の構造変化」に着目した投資タイミングの判断を支援します。
+    このガイドでは、スコアの読み方、5つの評価軸それぞれの意味、そしてより精緻な分析結果を得るための入力のコツを説明します。背景にある構造変化を言語化して入力することで、判断の根拠として使える評価が得られます。
   </p>
 
   <div class="toc">
     <div class="toc-title">目次</div>
-    <a href="#what">構造的変化点とは</a>
-    <a href="#howto">使い方</a>
-    <a href="#axes">5つの評価軸</a>
-    <a href="#scores">スコアの読み方</a>
-    <a href="#triggers">トリガー類型</a>
-    <a href="#timing">投資タイミング判定</a>
-    <a href="#tips">効果的な使い方のコツ</a>
+    <ol>
+      <li><a href="#what">なぜ「技術の成熟度」ではなく「構造変化」で測るのか</a></li>
+      <li><a href="#howto">使い方</a></li>
+      <li><a href="#axes">5つの評価軸</a></li>
+      <li><a href="#scores">スコアの読み方</a></li>
+      <li><a href="#triggers">トリガー類型</a></li>
+      <li><a href="#timing">投資タイミング判定</a></li>
+      <li><a href="#misread">スコアの誤読を防ぐために</a></li>
+      <li><a href="#tips">効果的な使い方のコツ</a></li>
+    </ol>
   </div>
 
   <!-- What -->
-  <h2 id="what">構造的変化点とは</h2>
+  <h2 id="what">なぜ「技術の成熟度」ではなく「構造変化」で測るのか</h2>
   <p>構造的変化点（Structural Inflection Point）とは、技術を取り巻く外部環境——規制、地政学、需要構造——が構造的に変化し、それまでニッチだった技術が突然「必要不可欠な解決策」に変貌する転換点のことです。</p>
   <p>従来の投資判断は「技術がどれだけ成熟しているか（TRL）」を基準としてきましたが、学術研究は技術の成熟度と商業化の成功が一致しないことを示しています。むしろ、技術が投資対象になるタイミングは外部の構造変化によって決まります。</p>
   <p>このツールは、その構造変化のシグナルを5つの学術的フレームワークで多角的に評価し、スコアとして数値化します。</p>
+  <p>たとえば、量子コンピュータの冷却技術は数年前から研究されていましたが、Google Willowが大規模なエラー訂正の閾値を突破した2024年以降、「やがて必要になるかもしれない技術」から「今すぐ解決しなければならない技術的ボトルネック」へと位置づけが一変しました。このツールが測定するのは、そうした転換がどこまで近づいているかです。</p>
 
   <!-- How to -->
   <h2 id="howto">使い方</h2>
@@ -138,13 +288,13 @@ p { margin-bottom: 16px; font-size: 15px; }
   <h2 id="axes">5つの評価軸</h2>
   <p>各テーマは以下の5つの学術理論に基づく軸で評価されます。それぞれが独立した視点で「変化点の近さ」を判定します。</p>
 
-  <div class="card" style="padding:0;">
+  <div class="axis-card">
     <div class="axis-guide">
       <div class="axis-color" style="background:#783c28;"></div>
       <div class="axis-guide-content">
         <div class="axis-guide-title">閾値への接近度</div>
         <div class="axis-guide-theory">Scheffer臨界遷移論（Critical Transitions Theory, 2009）</div>
-        <div class="axis-guide-desc">複雑系において、ゆっくりと変化する「遅い変数」（コスト、規制、インフラ等）が臨界閾値に近づくと、系は突然別の安定状態へジャンプします。この軸は、遅い変数がその閾値にどれだけ接近しているか——つまり不連続な転換がどれだけ差し迫っているか——を評価します。</div>
+        <div class="axis-guide-desc">コストや規制、インフラといった「じわじわ変化する要因」が、ある水準に達した瞬間、技術の位置づけが突然逆転します。この軸は、その転換がどこまで近づいているかを評価します。スコアが高いほど、「何かが起きれば一気に変わる」局面にあることを意味します。</div>
       </div>
     </div>
     <div class="axis-guide">
@@ -152,7 +302,7 @@ p { margin-bottom: 16px; font-size: 15px; }
       <div class="axis-guide-content">
         <div class="axis-guide-title">外圧と機会の窓</div>
         <div class="axis-guide-theory">Geels多層的視座（Multi-Level Perspective, 2002）</div>
-        <div class="axis-guide-desc">技術転換は「ランドスケープ」（地政学、気候変動等の外部環境）→「レジーム」（既存産業構造）→「ニッチ」（新技術）の3層の相互作用で起きます。ランドスケープ圧力がレジームを不安定化させ、ニッチ技術に「機会の窓」が開いているかを評価します。</div>
+        <div class="axis-guide-desc">地政学的変化や気候政策といった「外部からの大きな圧力」が既存産業の安定を崩すとき、新興技術に参入の機会が開きます。この軸は、その機会がどれだけ開いているかを評価します。スコアが高いほど、既存のやり方への圧力が強まっていることを示します。</div>
       </div>
     </div>
     <div class="axis-guide">
@@ -160,7 +310,7 @@ p { margin-bottom: 16px; font-size: 15px; }
       <div class="axis-guide-content">
         <div class="axis-guide-title">技術革命サイクル上の位置</div>
         <div class="axis-guide-theory">Perez技術革命論（Technological Revolutions and Financial Capital, 2002）</div>
-        <div class="axis-guide-desc">技術革命は「導入期」（投機的投資が主導）と「展開期」（生産資本が主導）に分かれ、その間に制度的な「転換点」があります。対象テーマが転換点のどちら側にいるか——すなわち制度的・社会的な受け入れ態勢がどの程度整っているか——を評価します。</div>
+        <div class="axis-guide-desc">技術革命には「投機的関心が先行する時期」と「社会に本格普及する時期」があり、その間に制度的な転換点が存在します。この軸は、対象テーマがその転換点のどちら側にいるかを評価します。スコアが高いほど、制度的・社会的な受け入れ態勢が整いつつあることを意味します。</div>
       </div>
     </div>
     <div class="axis-guide">
@@ -168,7 +318,7 @@ p { margin-bottom: 16px; font-size: 15px; }
       <div class="axis-guide-content">
         <div class="axis-guide-title">制度的障壁の変化</div>
         <div class="axis-guide-theory">North制度経済学（Institutions, Institutional Change and Economic Performance, 1990）</div>
-        <div class="axis-guide-desc">規制・法律・標準化は市場の「取引費用」を構成します。規制変化や標準確定によってこの費用が急落するとき、技術の商業化が一気に加速します。具体的な規制変化・標準化・認証の動きがどの程度進んでいるかを評価します。</div>
+        <div class="axis-guide-desc">規制の確定、標準化の進展、認証制度の運用開始は、それだけで新たな市場需要を生み出します。この軸は、そうした制度的変化がどの程度進んでいるかを評価します。スコアが高いほど、規制や標準が技術の商業化を後押ししている状況を示します。</div>
       </div>
     </div>
     <div class="axis-guide">
@@ -176,7 +326,7 @@ p { margin-bottom: 16px; font-size: 15px; }
       <div class="axis-guide-content">
         <div class="axis-guide-title">不確実性の解消度</div>
         <div class="axis-guide-theory">Dixit-Pindyckリアルオプション理論（Investment under Uncertainty, 1994）</div>
-        <div class="axis-guide-desc">不確実性が高い限り、投資を「待つ」ことに価値があります。規制の明確化、標準の確立、大口需要家のコミットメントによって不確実性が急落すると、待機の価値は消失し、今投資すべき局面になります。その不確実性がどの程度解消されているかを評価します。</div>
+        <div class="axis-guide-desc">規制の方向性が不明確な間は、早く動いても後で無駄になるリスクがあります。しかし規制が確定し、大口顧客がコミットし、標準が決まると、「様子見する理由」が一つずつ消えていきます。この軸は、その「様子見する理由」がどこまで消えているかを評価します。スコアが高いほど、今が動くタイミングであることを示します。</div>
       </div>
     </div>
   </div>
@@ -185,12 +335,24 @@ p { margin-bottom: 16px; font-size: 15px; }
   <h2 id="scores">スコアの読み方</h2>
 
   <h3>総合スコア（1-10）</h3>
-  <p>5軸の加重平均（閾値接近:25%、外圧と窓:20%、革命サイクル:15%、制度変化:20%、不確実性解消:20%）で算出されます。</p>
+  <p>5軸の加重平均で算出されます。「閾値への接近度」を最も重視（25%）しているのは、不連続な転換の差し迫り具合が投資タイミングの判断に最も直結するためです。</p>
 
-  <div class="score-explain">
-    <span class="score-range score-high">7-10: 変化点に近い</span>
-    <span class="score-range score-mid">4-6: 変化の兆候あり</span>
-    <span class="score-range score-low">1-3: 変化点は遠い</span>
+  <div class="score-grid">
+    <div class="score-card score-high">
+      <div class="score-card-number">7-10</div>
+      <div class="score-card-label">変化点に近い</div>
+      <div class="score-card-action">今が動くタイミング — 変化点が目前に迫っています</div>
+    </div>
+    <div class="score-card score-mid">
+      <div class="score-card-number">4-6</div>
+      <div class="score-card-label">変化の兆候あり</div>
+      <div class="score-card-action">準備段階 — シグナルを観察しながら体制を整える時期です</div>
+    </div>
+    <div class="score-card score-low">
+      <div class="score-card-number">1-3</div>
+      <div class="score-card-label">変化点は遠い</div>
+      <div class="score-card-action">機が熟していない — 注目は続けつつ、別の優先順位を検討してください</div>
+    </div>
   </div>
 
   <h3>各軸スコア（1-10）</h3>
@@ -219,7 +381,7 @@ p { margin-bottom: 16px; font-size: 15px; }
     </div>
     <div class="trigger-card">
       <div class="trigger-card-title">需要構造転換型</div>
-      <div class="trigger-card-desc">市場の需要構造が不可逆的に変化。削減型→除去型カーボンクレジットへのシフトなど。</div>
+      <div class="trigger-card-desc">市場の需要構造が不可逆的に変化。削減型から除去型カーボンクレジットへのシフトなど。</div>
     </div>
     <div class="trigger-card" style="grid-column:span 2;">
       <div class="trigger-card-title">複合型</div>
@@ -232,29 +394,44 @@ p { margin-bottom: 16px; font-size: 15px; }
   <p>総合スコアと各軸のバランスから、投資の最適タイミングを5段階で判定します。</p>
 
   <div class="card">
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <tr style="border-bottom:1px solid var(--border-light);">
-        <td style="padding:10px 0; font-weight:600; color:var(--text-muted); width:120px;">時期尚早</td>
-        <td style="padding:10px 0;">変化点まで3年以上。基礎研究段階。構造変化のシグナルはまだ弱い。</td>
-      </tr>
-      <tr style="border-bottom:1px solid var(--border-light);">
-        <td style="padding:10px 0; font-weight:600; color:var(--warning);">接近中</td>
-        <td style="padding:10px 0;">変化点まで1-3年。準備段階。弱いシグナルが観測され始めている。</td>
-      </tr>
-      <tr style="border-bottom:1px solid var(--border-light);">
-        <td style="padding:10px 0; font-weight:600; color:var(--success);">最適タイミング</td>
-        <td style="padding:10px 0;">変化点の直前〜直後。構造変化が明確に起きており、早期参入の優位性が最大。</td>
-      </tr>
-      <tr style="border-bottom:1px solid var(--border-light);">
-        <td style="padding:10px 0; font-weight:600; color:#a05a3c;">通過中</td>
-        <td style="padding:10px 0;">変化点を通過中。早期フォロワーとしての機会。先行者が確立されつつある。</td>
+    <table class="timing-table">
+      <tr>
+        <td class="timing-label"><span class="dot" style="background:var(--text-muted);"></span>時期尚早</td>
+        <td class="timing-desc">変化点まで3年以上。基礎研究段階。構造変化のシグナルはまだ弱い。</td>
+        <td class="timing-action">定期的な再評価と情報収集を続けてください</td>
       </tr>
       <tr>
-        <td style="padding:10px 0; font-weight:600; color:var(--danger);">機会逸失</td>
-        <td style="padding:10px 0;">変化点通過済み。先行者優位が確立され、参入障壁が高くなっている。</td>
+        <td class="timing-label"><span class="dot" style="background:var(--warning);"></span>接近中</td>
+        <td class="timing-desc">変化点まで1-3年。準備段階。弱いシグナルが観測され始めている。</td>
+        <td class="timing-action">体制整備や小規模な先行投資を検討してください</td>
+      </tr>
+      <tr>
+        <td class="timing-label"><span class="dot" style="background:var(--success);"></span>最適タイミング</td>
+        <td class="timing-desc">変化点の直前から直後。構造変化が明確に起きており、早期参入の優位性が最大。</td>
+        <td class="timing-action">早期参入の優位性が最大化するタイミングです</td>
+      </tr>
+      <tr>
+        <td class="timing-label"><span class="dot" style="background:#a05a3c;"></span>通過中</td>
+        <td class="timing-desc">変化点を通過中。早期フォロワーとしての機会。先行者が確立されつつある。</td>
+        <td class="timing-action">早期フォロワーとして差別化できる切り口を探してください</td>
+      </tr>
+      <tr>
+        <td class="timing-label"><span class="dot" style="background:var(--danger);"></span>機会逸失</td>
+        <td class="timing-desc">変化点通過済み。先行者優位が確立され、参入障壁が高くなっている。</td>
+        <td class="timing-action">次の変化点を探すか、異なる参入軸を検討してください</td>
       </tr>
     </table>
   </div>
+
+  <!-- Misread -->
+  <h2 id="misread">スコアの誤読を防ぐために</h2>
+  <p>スコアを正しく活用するために、よくある誤読のパターンを把握しておくことが重要です。</p>
+
+  <ul class="misread-list">
+    <li><strong>スコアが高い = 良い技術ではない。</strong>スコアは技術の品質や将来性そのものを評価しているのではなく、外部環境のタイミングが投資に適しているかどうかを示しています。優れた技術であっても、構造的な条件が整っていなければスコアは低くなります。</li>
+    <li><strong>同じテーマでも入力の書き方でスコアが変わる。</strong>AIは入力テキストに含まれる具体的なシグナル（規制変化、需要構造の変化など）を手がかりに評価します。背景情報を詳しく書くほど分析の精度が上がるため、入力の具体性がスコアに影響します。</li>
+    <li><strong>スコアが低くても戦略的に早期着手する意味はある。</strong>競合が少ない段階での参入は、変化点が到来したときに大きなアドバンテージになります。スコアが低いことは「やめるべき」ではなく「まだ機が熟していない」という情報です。</li>
+  </ul>
 
   <!-- Tips -->
   <h2 id="tips">効果的な使い方のコツ</h2>
@@ -270,15 +447,96 @@ p { margin-bottom: 16px; font-size: 15px; }
   </ul>
 
   <h3>複数テーマを比較する</h3>
-  <p>同じセッションで複数の研究テーマを評価すると、評価履歴から横並びでスコアを比較できます。どのテーマが最も「変化点に近い」かを相対的に判断する使い方が効果的です。</p>
+  <p>複数の研究テーマを続けて評価すると、画面下部の評価履歴に一覧が並びます。たとえば「候補テーマA・B・Cを同時評価して優先順位を決める」「以前評価したテーマを再評価して変化の速度を測る」という使い方が効果的です。</p>
 
   <h3>定期的に再評価する</h3>
   <p>構造的変化点は外部環境の変化によって形成されるため、規制の確定、地政学的イベント、業界の動きなどに応じて同じテーマのスコアが変動します。重要なテーマは定期的に再評価し、変化の方向性と速度を追跡することを推奨します。</p>
 
-  <div class="tip-box">
-    <strong>注意事項:</strong> このツールはAIによる推論に基づく評価です。投資判断の唯一の根拠としてではなく、構造的分析の出発点として活用してください。AIの評価結果に含まれる根拠（rationale）と検出されたシグナルを人間が検証し、追加の調査と照合することで、判断の精度を高められます。
+  <div class="tip-box caution">
+    <strong>注意事項:</strong> このツールはAIによる推論に基づく評価です。スコアは投資判断の唯一の根拠としてではなく、構造的分析を始めるための問いの枠組みとして使ってください。評価に含まれる「根拠」と「検出されたシグナル」を手がかりに、追加調査や関係者との議論につなげることで、判断の精度が高まります。
   </div>
 
 </div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" aria-label="ページの先頭に戻る">&#8593;</button>
+
+<script>
+// ── Scroll Progress Bar ──
+const progressBar = document.getElementById('progressBar');
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = progress + '%';
+}
+
+// ── Back to Top Button ──
+const backToTop = document.getElementById('backToTop');
+function updateBackToTop() {
+  if (window.scrollY > 400) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+}
+backToTop.addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Side TOC visibility + active tracking ──
+const sideToc = document.getElementById('sideToc');
+const sectionIds = ['what', 'howto', 'axes', 'scores', 'triggers', 'timing', 'misread', 'tips'];
+const sideLinks = sideToc.querySelectorAll('a');
+
+function updateSideTocVisibility() {
+  if (window.scrollY > 200) {
+    sideToc.style.opacity = '1';
+    sideToc.style.pointerEvents = 'auto';
+  } else {
+    sideToc.style.opacity = '0';
+    sideToc.style.pointerEvents = 'none';
+  }
+}
+// Initial state
+sideToc.style.opacity = '0';
+sideToc.style.pointerEvents = 'none';
+sideToc.style.transition = 'opacity 0.2s';
+
+// ── Intersection Observer for active section ──
+const observerOptions = {
+  rootMargin: '-80px 0px -60% 0px',
+  threshold: 0
+};
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      sideLinks.forEach(function(link) {
+        if (link.getAttribute('data-section') === id) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  });
+}, observerOptions);
+
+sectionIds.forEach(function(id) {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+
+// ── Combined scroll handler ──
+function onScroll() {
+  updateProgress();
+  updateBackToTop();
+  updateSideTocVisibility();
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
 </body>
 </html>
