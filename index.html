@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Structural Inflection Point Scorer</title>
+<title>Structural Inflection Point Scorer v2</title>
 <link rel="icon" href="https://esse-sense.com/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -377,6 +377,193 @@ a:hover { color: var(--primary-hover); }
 
 /* ===== Loading section (centered below input) ===== */
 .loading-section { max-width:720px; margin:24px auto 0; }
+
+/* ===== Stage 1: AI Acceleration Gate ===== */
+.gate-section { display:none; margin-top:24px; }
+.gate-section.active { display:block; }
+
+.gate-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--primary);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.gate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.gate-domain-name {
+  font-family: "Noto Serif JP", Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+.gate-domain-name small {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.gate-verdict {
+  flex-shrink: 0;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.gate-verdict.accelerated {
+  background: #E6F4EC;
+  color: var(--success);
+}
+.gate-verdict.not-accelerated {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+}
+.gate-verdict.insufficient {
+  background: #FDF3E0;
+  color: var(--warning);
+}
+
+.gate-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media (max-width: 640px) { .gate-stats { grid-template-columns: repeat(2, 1fr); } }
+.gate-stat {
+  text-align: center;
+  padding: 12px 8px;
+  background: var(--bg-secondary);
+}
+.gate-stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+.gate-stat-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.gate-mechanisms {
+  margin-bottom: 12px;
+}
+.gate-mechanisms-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.gate-mech-tag {
+  display: inline-block;
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 2px 4px 2px 0;
+}
+
+.gate-caveats {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #FDF8F0;
+  border-left: 3px solid var(--warning);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.gate-caveats-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--warning);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.gate-no-match {
+  text-align: center;
+  padding: 32px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.gate-action {
+  text-align: center;
+  margin-top: 16px;
+}
+.btn-stage2 {
+  background: var(--accent);
+  color: #F5ECE4;
+  border: none;
+  padding: 13px 36px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all var(--speed-fast) var(--ease-out);
+}
+.btn-stage2:hover { background: var(--accent-hover); }
+.btn-stage2:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.confidence-bar {
+  height: 6px;
+  background: var(--bg-secondary);
+  margin-top: 8px;
+  overflow: hidden;
+}
+.confidence-bar-fill {
+  height: 100%;
+  transition: width 0.6s var(--ease-out);
+}
+
+/* Stage indicator pills */
+.stage-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.stage-pill {
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.stage-pill.active {
+  background: var(--accent);
+  color: #F5ECE4;
+}
+.stage-pill.done {
+  background: var(--success);
+  color: #fff;
+}
+.stage-pill.pending {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.stage-arrow {
+  color: var(--text-muted);
+  font-size: 12px;
+}
 </style>
 </head>
 <body>
@@ -398,7 +585,7 @@ a:hover { color: var(--primary-hover); }
 
 <!-- Header -->
 <div class="header">
-  <h1>Structural Inflection Point Scorer<small>構造的変化点スコアラー</small></h1>
+  <h1>Structural Inflection Point Scorer v2<small>2段階判定 構造的変化点スコアラー</small></h1>
   <div class="header-actions">
     <a href="guide.html" style="font-size:13px; color:var(--text-muted); text-decoration:none; margin-right:4px;">使い方ガイド</a>
     <button class="btn-icon" onclick="openSettings()" title="API設定">&#9881;</button>
@@ -416,7 +603,7 @@ a:hover { color: var(--primary-hover); }
     <h2>研究テーマ / 事業領域を入力</h2>
     <textarea id="themeInput" placeholder="評価したい研究テーマや事業領域の説明を入力してください。&#10;&#10;例：超伝導量子コンピュータ向け超低消費電力KTWPA読み出しモジュール。Google Willowが2024年に105量子ビットでエラー訂正閾値を突破し、数千〜数万量子ビットへのスケールアップが「今やらなければいけない課題」に転換。従来のHEMT増幅器では発熱が大きすぎて量子ビット数の増加に耐えられない物理的制約が顕在化。"></textarea>
     <div class="input-controls">
-      <button class="btn-primary" id="evalBtn">変化点を評価</button>
+      <button class="btn-primary" id="evalBtn">AI加速度を判定</button>
       <select class="model-select" id="modelSelect">
         <option value="claude-sonnet-4-6">Sonnet 4.6 (推奨)</option>
         <option value="claude-opus-4-6">Opus 4.6</option>
@@ -432,7 +619,20 @@ a:hover { color: var(--primary-hover); }
 
   <!-- Placeholder -->
   <div id="placeholder" class="empty-state" style="margin-top:24px;">
-    研究テーマを入力して「変化点を評価」を押してください
+    研究テーマを入力して「AI加速度を判定」を押してください
+  </div>
+
+  <!-- Stage 1: AI Acceleration Gate Results -->
+  <div id="gateSection" class="gate-section">
+    <div class="stage-indicator">
+      <span class="stage-pill active" id="stage1Pill">Stage 1: AI加速判定</span>
+      <span class="stage-arrow">&#8594;</span>
+      <span class="stage-pill pending" id="stage2Pill">Stage 2: 変化点評価</span>
+    </div>
+    <div id="gateResults"></div>
+    <div class="gate-action">
+      <button class="btn-stage2" id="stage2Btn" onclick="evaluateStage2()">Stage 2: 構造的変化点を評価</button>
+    </div>
   </div>
 
   <!-- Loading -->
@@ -443,7 +643,7 @@ a:hover { color: var(--primary-hover); }
         <div class="loading-ring-inner"></div>
         <div class="loading-icon">&#9883;</div>
       </div>
-      <div style="color:var(--text); font-size:14px; font-weight:600; margin-bottom:12px;">構造的変化点を分析中</div>
+      <div id="loadingLabel" style="color:var(--text); font-size:14px; font-weight:600; margin-bottom:12px;">構造的変化点を分析中</div>
       <ul class="loading-steps" id="loadingSteps">
         <li class="active" id="step1"><span class="check"></span>閾値への接近度を分析中</li>
         <li id="step2"><span class="check"></span>外圧と機会の窓を分析中</li>
@@ -454,7 +654,7 @@ a:hover { color: var(--primary-hover); }
     </div>
   </div>
 
-  <!-- Results Section (hidden until evaluation) -->
+  <!-- Results Section (hidden until Stage 2 evaluation) -->
   <div id="resultsSection" class="results-section">
     <!-- Tier 1: Hero -->
     <div class="result-hero">
@@ -472,7 +672,7 @@ a:hover { color: var(--primary-hover); }
     <div id="assessmentBox"></div>
     <div class="details-grid" id="infoGrid"></div>
     <div style="text-align:right; margin-top:12px;">
-      <button class="btn-sm" onclick="copyAsMarkdown()">Markdownでコピー</button>
+      <button class="btn-sm" onclick="copyAsMarkdownV2()">Markdownでコピー</button>
     </div>
   </div>
 
@@ -597,6 +797,148 @@ scoreは1-10の整数、confidenceは0.0-1.0の小数です。composite_scoreは
 
 // ===== State =====
 let currentResult = null;
+let gateData = [];       // domain assessments from gate_data.json
+let aliasData = [];      // domain aliases from aliases.json
+let gateMatches = [];    // Stage 1 matched domains for current theme
+let gateDataLoaded = false;
+
+// ===== Mechanism labels =====
+const MECHANISM_LABELS = {
+  HYPOTHESIS_GEN: '仮説生成', LITERATURE_SYNTHESIS: '文献統合',
+  CODE_ACCELERATION: 'コード加速', DATA_LABELING: 'データラベリング',
+  SIMULATION_EMULATION: 'シミュレーション代替', MULTIMODAL_ANALYSIS: 'マルチモーダル解析',
+  MOLECULE_DESIGN: '分子・材料設計', CLINICAL_TRIAL_SUPPORT: '臨床支援',
+  KNOWLEDGE_EXTRACTION: '知識抽出', EXPERT_AUGMENTATION: '専門家拡張',
+  CROSS_DOMAIN_TRANSFER: '分野横断移転', WORKFLOW_AUTOMATION: 'ワークフロー自動化',
+  LANGUAGE_BARRIER_REMOVAL: '言語障壁除去'
+};
+const CONFIDENCE_LABELS = {
+  definitive: '確定的', strong: '強い', moderate: '中程度',
+  tentative: '暫定的', insufficient: '不十分'
+};
+const CONFIDENCE_COLORS = {
+  definitive: 'var(--success)', strong: '#2c5f8a', moderate: 'var(--warning)',
+  tentative: 'var(--text-muted)', insufficient: 'var(--text-muted)'
+};
+
+// ===== Load Gate Data =====
+async function loadGateData() {
+  if (gateDataLoaded) return;
+  try {
+    const base = location.href.replace(/\/[^/]*$/, '/');
+    const [gateResp, aliasResp] = await Promise.all([
+      fetch(base + 'gate_data.json'),
+      fetch(base + 'aliases.json')
+    ]);
+    if (gateResp.ok) gateData = await gateResp.json();
+    if (aliasResp.ok) aliasData = await aliasResp.json();
+    gateDataLoaded = true;
+    console.log('[Gate] Loaded', gateData.length, 'domains,', aliasData.length, 'aliases');
+  } catch (e) {
+    console.warn('[Gate] Failed to load gate data:', e);
+  }
+}
+
+// ===== Fuzzy Match Domains =====
+function matchDomains(query) {
+  if (!gateData.length) return [];
+  const q = query.toLowerCase();
+  const tokens = q.split(/[\s,;.、。・\n]+/).filter(t => t.length > 1);
+  const scored = new Map(); // domain_id -> score
+
+  // Match against aliases
+  for (const alias of aliasData) {
+    const a = alias.alias.toLowerCase();
+    for (const token of tokens) {
+      if (a.includes(token) || token.includes(a)) {
+        const prev = scored.get(alias.domain_id) || 0;
+        // Exact match gets higher score
+        const boost = (a === token) ? 3 : (a.includes(token) ? 2 : 1);
+        scored.set(alias.domain_id, prev + boost);
+      }
+    }
+  }
+
+  // Match against domain names
+  for (const domain of gateData) {
+    const nameEn = (domain.domain_name_en || '').toLowerCase();
+    const nameJa = (domain.domain_name_ja || '');
+    for (const token of tokens) {
+      if (nameEn.includes(token) || nameJa.includes(token) || token.includes(nameEn)) {
+        const prev = scored.get(domain.domain_id) || 0;
+        scored.set(domain.domain_id, prev + 2);
+      }
+    }
+  }
+
+  // Also check keyword patterns in the full query
+  const keywordMap = {
+    'drug': 'LIFE-SCI-DRUG', 'protein': 'LIFE-SCI-DRUG-PROTEIN', 'alphafold': 'LIFE-SCI-DRUG-PROTEIN',
+    'genomic': 'LIFE-SCI-GENOMICS', 'genome': 'LIFE-SCI-GENOMICS', 'dna': 'LIFE-SCI-GENOMICS',
+    'material': 'PHYS-SCI-MATDESIGN', 'battery': 'ENERGY-BATTERY',
+    'climate': 'CLIMATE-ENV-MODEL', 'weather': 'EARTH-SCI-WEATHER',
+    'medical': 'MED-HEALTH', 'imaging': 'MED-HEALTH-IMAGING', 'pathology': 'MED-HEALTH-IMAGING-PATH',
+    'radiology': 'MED-HEALTH-IMAGING-RADIOL', 'clinical': 'MED-HEALTH-CLINICAL',
+    'education': 'EDUCATION', 'tutoring': 'EDUCATION-TUTOR',
+    'legal': 'LAW-POLICY', 'contract': 'LAW-POLICY-CONTRACT',
+    'finance': 'ECON-BIZ-FINANCE', 'marketing': 'ECON-BIZ-MARKET',
+    'software': 'COMP-SCI-SE', 'code': 'COMP-SCI-SE-CODEGEN', 'copilot': 'COMP-SCI-SE-CODEGEN',
+    'chemistry': 'CHEM', 'catalyst': 'CHEM-CATALY', 'synthesis': 'CHEM-SYNTH',
+    'robot': 'COMP-SCI-ROBOTICS', 'quantum': 'PHYS-SCI-QUANTUM',
+    'agriculture': 'AGRI-FOOD', 'crop': 'AGRI-FOOD-CROP',
+    'energy': 'ENERGY', 'fusion': 'ENERGY-FUSION', 'solar': 'ENERGY',
+    'neuroscience': 'LIFE-SCI-NEUROSCI', 'brain': 'LIFE-SCI-NEUROSCI',
+    'creative': 'CREATIVE', 'music': 'CREATIVE-MUSIC', 'art': 'CREATIVE-VISUAL',
+    'math': 'MATH-STAT', 'theorem': 'MATH-STAT-THEOREM',
+    'earthquake': 'EARTH-SCI-SEISMO', 'ocean': 'EARTH-SCI-OCEAN',
+    'astronomy': 'SPACE-ASTRO', 'exoplanet': 'SPACE-EXOPLANET',
+    'nlp': 'COMP-SCI-NLP', 'language model': 'COMP-SCI-NLP',
+    'psychology': 'SOC-SCI-PSYCH', 'sociology': 'SOC-SCI-SOCIOL',
+    'supply chain': 'ECON-BIZ-SUPPLY', 'logistics': 'ECON-BIZ-SUPPLY',
+    'manufacturing': 'ENGINEERING-MFCT', 'cybersecurity': 'COMP-SCI-CYBERSEC',
+    'polymer': 'PHYS-SCI-MATDESIGN-POLYMER', 'ecology': 'LIFE-SCI-ECOLOGY',
+    'synthetic biology': 'LIFE-SCI-SYNBIO', 'crispr': 'LIFE-SCI-SYNBIO',
+    '創薬': 'LIFE-SCI-DRUG', 'タンパク質': 'LIFE-SCI-DRUG-PROTEIN',
+    '材料': 'PHYS-SCI-MATDESIGN', '気候': 'CLIMATE-ENV-MODEL',
+    '医療': 'MED-HEALTH', '教育': 'EDUCATION', '法律': 'LAW-POLICY',
+    '金融': 'ECON-BIZ-FINANCE', 'エネルギー': 'ENERGY',
+    '量子': 'PHYS-SCI-QUANTUM', 'ロボット': 'COMP-SCI-ROBOTICS',
+    '農業': 'AGRI-FOOD', '宇宙': 'SPACE', '数学': 'MATH-STAT',
+  };
+  for (const [kw, domId] of Object.entries(keywordMap)) {
+    if (q.includes(kw)) {
+      const prev = scored.get(domId) || 0;
+      scored.set(domId, prev + 2);
+    }
+  }
+
+  // Convert to sorted array, include only domains with data
+  const results = [];
+  for (const [domId, score] of scored) {
+    const domain = gateData.find(d => d.domain_id === domId);
+    if (domain) {
+      results.push({ ...domain, matchScore: score });
+    }
+    // Also add parent domain if child matched
+    if (domain && domain.hierarchy_level > 1) {
+      const parent = gateData.find(d => d.domain_name_en === domain.parent_domain_en && d.hierarchy_level < domain.hierarchy_level);
+      if (parent && !scored.has(parent.domain_id)) {
+        results.push({ ...parent, matchScore: score * 0.5 });
+      }
+    }
+  }
+
+  // Sort by match score, then by mention count
+  results.sort((a, b) => b.matchScore - a.matchScore || (b.mention_count || 0) - (a.mention_count || 0));
+
+  // Deduplicate and limit
+  const seen = new Set();
+  return results.filter(d => {
+    if (seen.has(d.domain_id)) return false;
+    seen.add(d.domain_id);
+    return true;
+  }).slice(0, 5);
+}
 
 // ===== API Key Management =====
 function getApiKey() {
@@ -723,30 +1065,189 @@ function stopLoadingSteps() {
   });
 }
 
-// ===== Evaluate =====
+// ===== Stage 1: AI Acceleration Gate =====
 async function evaluate() {
+  const theme = document.getElementById('themeInput').value.trim();
+  if (!theme) { showToast('研究テーマを入力してください', 'info'); return; }
+
+  const btn = document.getElementById('evalBtn');
+  btn.disabled = true;
+  btn.textContent = '判定中...';
+
+  // Load gate data if not loaded
+  await loadGateData();
+
+  // Match domains
+  gateMatches = matchDomains(theme);
+
+  // Hide previous results
+  document.getElementById('placeholder').style.display = 'none';
+  document.getElementById('resultsSection').classList.remove('active');
+  document.getElementById('loading').classList.remove('active');
+
+  // Show Stage 1 results
+  renderGateResults(gateMatches);
+
+  btn.disabled = false;
+  btn.textContent = 'AI加速度を判定';
+}
+
+// ===== Render Gate Results =====
+function renderGateResults(matches) {
+  const section = document.getElementById('gateSection');
+  const container = document.getElementById('gateResults');
+  section.classList.add('active');
+
+  // Update stage pills
+  document.getElementById('stage1Pill').className = 'stage-pill done';
+  document.getElementById('stage2Pill').className = 'stage-pill pending';
+
+  if (!matches.length) {
+    container.innerHTML = `
+      <div class="gate-no-match">
+        入力されたテーマに合致するAI加速ドメインが見つかりませんでした。<br>
+        Stage 2の評価ではAI加速の視点を含めた包括的な分析を行います。
+      </div>`;
+    document.getElementById('stage2Btn').style.display = 'inline-block';
+    return;
+  }
+
+  let html = '';
+  for (const d of matches) {
+    const isAccelerated = d.is_ai_accelerated;
+    const tier = d.confidence_tier || 'insufficient';
+    const tierLabel = CONFIDENCE_LABELS[tier] || tier;
+    const tierColor = CONFIDENCE_COLORS[tier] || 'var(--text-muted)';
+
+    // Verdict badge
+    let verdictClass, verdictText;
+    if (isAccelerated) {
+      verdictClass = 'accelerated';
+      verdictText = 'AI加速確認';
+    } else if (tier === 'tentative') {
+      verdictClass = 'insufficient';
+      verdictText = '判定保留';
+    } else {
+      verdictClass = 'not-accelerated';
+      verdictText = 'データ不足';
+    }
+
+    // Stats
+    const mentions = d.mention_count || 0;
+    const sources = d.source_count || 0;
+    const consensus = d.consensus_score ? (d.consensus_score * 100).toFixed(0) : '--';
+
+    // Mechanisms
+    const mechanisms = (d.primary_mechanisms || [])
+      .map(m => MECHANISM_LABELS[m] || m)
+      .filter(m => m);
+
+    // AI capabilities
+    const capabilities = (d.primary_ai_capabilities || []).slice(0, 3);
+
+    // Caveats
+    const caveats = (d.key_caveats || []).slice(0, 3);
+
+    html += `
+      <div class="gate-card" style="border-top-color: ${tierColor}">
+        <div class="gate-header">
+          <div class="gate-domain-name">
+            ${esc(d.domain_name_ja || d.domain_name_en)}
+            <small>${esc(d.domain_name_en)}${d.parent_domain_en ? ' / ' + esc(d.parent_domain_en) : ''}</small>
+          </div>
+          <span class="gate-verdict ${verdictClass}">${verdictText}</span>
+        </div>
+
+        <div class="gate-stats">
+          <div class="gate-stat">
+            <div class="gate-stat-value">${mentions}</div>
+            <div class="gate-stat-label">言及数</div>
+          </div>
+          <div class="gate-stat">
+            <div class="gate-stat-value">${sources}</div>
+            <div class="gate-stat-label">出典数</div>
+          </div>
+          <div class="gate-stat">
+            <div class="gate-stat-value" style="color:${tierColor}">${tierLabel}</div>
+            <div class="gate-stat-label">確信度</div>
+          </div>
+          <div class="gate-stat">
+            <div class="gate-stat-value">${consensus}%</div>
+            <div class="gate-stat-label">コンセンサス</div>
+          </div>
+        </div>
+
+        ${mechanisms.length ? `
+          <div class="gate-mechanisms">
+            <div class="gate-mechanisms-label">加速メカニズム</div>
+            ${mechanisms.map(m => `<span class="gate-mech-tag">${esc(m)}</span>`).join('')}
+          </div>` : ''}
+
+        ${capabilities.length ? `
+          <div class="gate-mechanisms">
+            <div class="gate-mechanisms-label">主要AI技術</div>
+            ${capabilities.map(c => `<span class="gate-mech-tag" style="background:#E8F0F8;color:var(--info)">${esc(c)}</span>`).join('')}
+          </div>` : ''}
+
+        ${caveats.length ? `
+          <div class="gate-caveats">
+            <div class="gate-caveats-label">注意事項</div>
+            ${caveats.map(c => esc(c)).join('<br>')}
+          </div>` : ''}
+
+        <div class="confidence-bar">
+          <div class="confidence-bar-fill" style="width:${consensus !== '--' ? consensus : 0}%;background:${tierColor}"></div>
+        </div>
+      </div>`;
+  }
+
+  container.innerHTML = html;
+  document.getElementById('stage2Btn').style.display = 'inline-block';
+}
+
+// ===== Stage 2: Full Inflection Scoring =====
+async function evaluateStage2() {
   // Check file:// protocol
   if (location.protocol === 'file:') {
     showToast('file://では動作しません。GitHub Pages版を使ってください', 'warning', 8000);
     return;
   }
   const theme = document.getElementById('themeInput').value.trim();
-  if (!theme) { showToast('研究テーマを入力してください', 'info'); return; }
+  if (!theme) return;
   const apiKey = getApiKey();
   if (!apiKey) { openSettings(); showToast('APIキーを設定してください（歯車アイコン）', 'warning', 8000); return; }
 
   const model = document.getElementById('modelSelect').value;
-  const btn = document.getElementById('evalBtn');
+  const btn = document.getElementById('stage2Btn');
 
   // UI state
   btn.disabled = true;
   btn.textContent = '分析中...';
-  document.getElementById('placeholder').style.display = 'none';
+  document.getElementById('stage2Pill').className = 'stage-pill active';
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('loading').classList.add('active');
+  document.getElementById('loadingLabel').textContent = '構造的変化点を分析中（Stage 2）';
   startLoadingSteps();
 
+  // Build AI acceleration context from Stage 1 matches
+  let accelContext = '';
+  if (gateMatches.length) {
+    const topMatch = gateMatches[0];
+    accelContext = `\n\n## AI加速エビデンス（Stage 1判定結果）
+この研究テーマは「${topMatch.domain_name_en}（${topMatch.domain_name_ja}）」に該当し、以下のAI加速エビデンスが存在します。この情報を5軸評価に反映してください。
+
+- AI加速確認: ${topMatch.is_ai_accelerated ? 'はい' : 'いいえ'}
+- 確信度: ${CONFIDENCE_LABELS[topMatch.confidence_tier] || topMatch.confidence_tier}
+- エビデンス: ${topMatch.mention_count || 0}件の学術的言及、${topMatch.source_count || 0}件の出典
+- 主要メカニズム: ${(topMatch.primary_mechanisms || []).map(m => MECHANISM_LABELS[m] || m).join('、') || 'なし'}
+- 主要AI技術: ${(topMatch.primary_ai_capabilities || []).slice(0, 3).join('、') || 'なし'}
+${(topMatch.key_caveats || []).length ? '- 注意事項: ' + topMatch.key_caveats.join('、') : ''}
+
+特にPerez技術革命論（軸3）とDixit-Pindyckリアルオプション（軸5）の評価において、AI加速がもたらす不確実性の急落と導入期→展開期の転換を考慮してください。`;
+  }
+
   try {
+    const systemPrompt = SYSTEM_PROMPT + accelContext;
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -758,7 +1259,7 @@ async function evaluate() {
       body: JSON.stringify({
         model: model,
         max_tokens: 8192,
-        system: SYSTEM_PROMPT,
+        system: systemPrompt,
         messages: [{ role: 'user', content: `以下の研究テーマ/事業領域を評価してください：\n\n${theme}` }]
       })
     });
@@ -779,14 +1280,13 @@ async function evaluate() {
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (jsonMatch) jsonStr = jsonMatch[0];
 
-    // Attempt to fix common JSON issues: trailing commas, unescaped newlines in strings
+    // Attempt to fix common JSON issues
     jsonStr = jsonStr.replace(/,\s*([\]}])/g, '$1');
 
     let result;
     try {
       result = JSON.parse(jsonStr);
     } catch (parseErr) {
-      // Retry: ask the model to fix its own JSON
       console.warn('JSON parse failed, retrying with repair prompt...', parseErr.message);
       const repairResp = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
@@ -813,23 +1313,25 @@ async function evaluate() {
       if (!repairMatch) throw new Error('AIの応答からJSONを抽出できませんでした');
       result = JSON.parse(repairMatch[0]);
     }
-    // Normalize: ensure all expected fields exist with fallback calculations
+
     result = normalizeResult(result);
     currentResult = result;
 
     // Save to history
     saveToHistory(theme, result, model);
 
+    // Update stage pills
+    document.getElementById('stage2Pill').className = 'stage-pill done';
+
     // Render
     renderResults(result);
 
   } catch (err) {
     showToast(err.message, 'error', 8000);
-    document.getElementById('placeholder').style.display = 'block';
   } finally {
     stopLoadingSteps();
     btn.disabled = false;
-    btn.textContent = '変化点を評価';
+    btn.textContent = 'Stage 2: 構造的変化点を評価';
     document.getElementById('loading').classList.remove('active');
   }
 }
@@ -1091,6 +1593,43 @@ function copyAsMarkdown() {
   });
 }
 
+// ===== Copy with Stage 1 context =====
+function copyAsMarkdownV2() {
+  if (!currentResult) return copyAsMarkdown();
+  const r = currentResult;
+  const theme = document.getElementById('themeInput').value;
+  let md = `# 構造的変化点評価（2段階判定）\n\n`;
+  md += `**テーマ**: ${theme}\n\n`;
+
+  // Stage 1
+  if (gateMatches.length) {
+    md += `## Stage 1: AI加速判定\n\n`;
+    for (const d of gateMatches) {
+      md += `### ${d.domain_name_ja} (${d.domain_name_en})\n`;
+      md += `- AI加速: ${d.is_ai_accelerated ? 'はい' : 'いいえ'} / 確信度: ${CONFIDENCE_LABELS[d.confidence_tier] || d.confidence_tier}\n`;
+      md += `- 言及数: ${d.mention_count || 0} / 出典数: ${d.source_count || 0}\n`;
+      const mechs = (d.primary_mechanisms || []).map(m => MECHANISM_LABELS[m] || m).join('、');
+      if (mechs) md += `- メカニズム: ${mechs}\n`;
+      md += '\n';
+    }
+  }
+
+  // Stage 2
+  md += `## Stage 2: 5軸評価\n\n`;
+  md += `**総合スコア**: ${r.composite_score}/10\n`;
+  md += `**投資タイミング**: ${TIMING_LABELS[r.investment_timing] || r.investment_timing}\n`;
+  md += `**トリガー類型**: ${TRIGGER_LABELS[r.trigger_type] || r.trigger_type}\n\n`;
+  for (const [key, meta] of Object.entries(AXIS_META)) {
+    const ax = r.axes?.[key] || {};
+    md += `### ${meta.fullName}: ${ax.score}/10\n${ax.rationale}\n\n`;
+  }
+  md += `## 総合評価\n${r.overall_assessment}\n`;
+  navigator.clipboard.writeText(md).then(() => {
+    const btn = document.querySelector('[onclick="copyAsMarkdown()"]');
+    if (btn) { btn.textContent = 'コピーしました'; setTimeout(() => btn.textContent = 'Markdownでコピー', 2000); }
+  });
+}
+
 // ===== Utility =====
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
@@ -1122,7 +1661,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('[onclick="clearHistory()"]')?.addEventListener('click', clearHistory);
 
   // Bind copy markdown
-  document.querySelector('[onclick="copyAsMarkdown()"]')?.addEventListener('click', copyAsMarkdown);
+  document.querySelector('[onclick="copyAsMarkdownV2()"]')?.addEventListener('click', copyAsMarkdownV2);
+
+  // Pre-load gate data
+  loadGateData();
 
   renderHistory();
 

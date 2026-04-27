@@ -1,0 +1,541 @@
+[
+  {
+    "alias": "AI music",
+    "alias_lang": "en",
+    "domain_id": "CREATIVE-MUSIC",
+    "domain_name_en": "Music Composition",
+    "domain_name_ja": "音楽"
+  },
+  {
+    "alias": "AI writing",
+    "alias_lang": "en",
+    "domain_id": "CREATIVE-WRITING",
+    "domain_name_en": "Creative Writing",
+    "domain_name_ja": "創作文章"
+  },
+  {
+    "alias": "AlphaFold",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-DRUG-PROTEIN",
+    "domain_name_en": "Protein Structure Prediction",
+    "domain_name_ja": "タンパク質構造予測"
+  },
+  {
+    "alias": "CCS",
+    "alias_lang": "en",
+    "domain_id": "CLIMATE-ENV-CARBON",
+    "domain_name_en": "Carbon Capture & Sequestration",
+    "domain_name_ja": "炭素回収"
+  },
+  {
+    "alias": "CERN",
+    "alias_lang": "en",
+    "domain_id": "PHYS-SCI-PARTICLE",
+    "domain_name_en": "Particle & High-Energy Physics",
+    "domain_name_ja": "素粒子物理"
+  },
+  {
+    "alias": "CRISPR",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-SYNBIO",
+    "domain_name_en": "Synthetic Biology",
+    "domain_name_ja": "合成生物学"
+  },
+  {
+    "alias": "Copilot",
+    "alias_lang": "en",
+    "domain_id": "COMP-SCI-SE-CODEGEN",
+    "domain_name_en": "Code Generation",
+    "domain_name_ja": "コード生成"
+  },
+  {
+    "alias": "DFT",
+    "alias_lang": "en",
+    "domain_id": "CHEM-COMPHEM",
+    "domain_name_en": "Computational Chemistry",
+    "domain_name_ja": "計算化学"
+  },
+  {
+    "alias": "DNA sequencing",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-GENOMICS",
+    "domain_name_en": "Genomics & Sequencing",
+    "domain_name_ja": "ゲノミクス"
+  },
+  {
+    "alias": "GCM",
+    "alias_lang": "en",
+    "domain_id": "CLIMATE-ENV-MODEL",
+    "domain_name_en": "Climate Modeling",
+    "domain_name_ja": "気候モデリング"
+  },
+  {
+    "alias": "GraphCast",
+    "alias_lang": "en",
+    "domain_id": "EARTH-SCI-WEATHER",
+    "domain_name_en": "Weather Forecasting",
+    "domain_name_ja": "気象学"
+  },
+  {
+    "alias": "Industry 4.0",
+    "alias_lang": "en",
+    "domain_id": "ENGINEERING-MFCT",
+    "domain_name_en": "Manufacturing & Robotics",
+    "domain_name_ja": "製造・ロボティクス"
+  },
+  {
+    "alias": "LHC",
+    "alias_lang": "en",
+    "domain_id": "PHYS-SCI-PARTICLE",
+    "domain_name_en": "Particle & High-Energy Physics",
+    "domain_name_ja": "素粒子物理"
+  },
+  {
+    "alias": "Lean",
+    "alias_lang": "en",
+    "domain_id": "MATH-STAT-THEOREM",
+    "domain_name_en": "Theorem Proving",
+    "domain_name_ja": "定理証明"
+  },
+  {
+    "alias": "Midjourney",
+    "alias_lang": "en",
+    "domain_id": "CREATIVE-VISUAL",
+    "domain_name_en": "Visual Arts & Design",
+    "domain_name_ja": "ビジュアルアート"
+  },
+  {
+    "alias": "Pangu-Weather",
+    "alias_lang": "en",
+    "domain_id": "EARTH-SCI-WEATHER",
+    "domain_name_en": "Weather Forecasting",
+    "domain_name_ja": "気象学"
+  },
+  {
+    "alias": "Sora",
+    "alias_lang": "en",
+    "domain_id": "CREATIVE-FILM",
+    "domain_name_en": "Film & Video Production",
+    "domain_name_ja": "映像"
+  },
+  {
+    "alias": "Stable Diffusion",
+    "alias_lang": "en",
+    "domain_id": "CREATIVE-VISUAL",
+    "domain_name_en": "Visual Arts & Design",
+    "domain_name_ja": "ビジュアルアート"
+  },
+  {
+    "alias": "adaptive learning",
+    "alias_lang": "en",
+    "domain_id": "EDUCATION-TUTOR",
+    "domain_name_en": "Intelligent Tutoring",
+    "domain_name_ja": "個別指導"
+  },
+  {
+    "alias": "automated theorem proving",
+    "alias_lang": "en",
+    "domain_id": "MATH-STAT-THEOREM",
+    "domain_name_en": "Theorem Proving",
+    "domain_name_ja": "定理証明"
+  },
+  {
+    "alias": "autonomous systems",
+    "alias_lang": "en",
+    "domain_id": "COMP-SCI-ROBOTICS",
+    "domain_name_en": "Robotics",
+    "domain_name_ja": "ロボティクス"
+  },
+  {
+    "alias": "biology",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI",
+    "domain_name_en": "Life Sciences",
+    "domain_name_ja": "生命科学"
+  },
+  {
+    "alias": "bioscience",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI",
+    "domain_name_en": "Life Sciences",
+    "domain_name_ja": "生命科学"
+  },
+  {
+    "alias": "catalyst optimization",
+    "alias_lang": "en",
+    "domain_id": "CHEM-CATALY",
+    "domain_name_en": "Catalysis",
+    "domain_name_ja": "触媒化学"
+  },
+  {
+    "alias": "chest X-ray AI",
+    "alias_lang": "en",
+    "domain_id": "MED-HEALTH-IMAGING-RADIOL",
+    "domain_name_en": "Radiology AI",
+    "domain_name_ja": "放射線AI"
+  },
+  {
+    "alias": "climate simulation",
+    "alias_lang": "en",
+    "domain_id": "CLIMATE-ENV-MODEL",
+    "domain_name_en": "Climate Modeling",
+    "domain_name_ja": "気候モデリング"
+  },
+  {
+    "alias": "clinical AI",
+    "alias_lang": "en",
+    "domain_id": "MED-HEALTH-CLINICAL",
+    "domain_name_en": "Clinical Decision Support",
+    "domain_name_ja": "臨床意思決定支援"
+  },
+  {
+    "alias": "code completion",
+    "alias_lang": "en",
+    "domain_id": "COMP-SCI-SE-CODEGEN",
+    "domain_name_en": "Code Generation",
+    "domain_name_ja": "コード生成"
+  },
+  {
+    "alias": "combinatorial optimization",
+    "alias_lang": "en",
+    "domain_id": "MATH-STAT-OPTIM",
+    "domain_name_en": "Optimization",
+    "domain_name_ja": "最適化"
+  },
+  {
+    "alias": "computational materials",
+    "alias_lang": "en",
+    "domain_id": "PHYS-SCI-MATDESIGN",
+    "domain_name_en": "Materials Design & Discovery",
+    "domain_name_ja": "材料設計"
+  },
+  {
+    "alias": "courseware generation",
+    "alias_lang": "en",
+    "domain_id": "EDUCATION-CONTENT",
+    "domain_name_en": "Educational Content Creation",
+    "domain_name_ja": "教育コンテンツ"
+  },
+  {
+    "alias": "crop yield prediction",
+    "alias_lang": "en",
+    "domain_id": "AGRI-FOOD-CROP",
+    "domain_name_en": "Crop Science",
+    "domain_name_ja": "作物科学"
+  },
+  {
+    "alias": "customer analytics",
+    "alias_lang": "en",
+    "domain_id": "ECON-BIZ-MARKET",
+    "domain_name_en": "Marketing & CRM",
+    "domain_name_ja": "マーケティング"
+  },
+  {
+    "alias": "de novo drug design",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-DRUG-MOLGEN",
+    "domain_name_en": "Molecular Generation / De Novo Design",
+    "domain_name_ja": "分子生成"
+  },
+  {
+    "alias": "density functional theory",
+    "alias_lang": "en",
+    "domain_id": "CHEM-COMPHEM",
+    "domain_name_en": "Computational Chemistry",
+    "domain_name_ja": "計算化学"
+  },
+  {
+    "alias": "digital pathology",
+    "alias_lang": "en",
+    "domain_id": "MED-HEALTH-IMAGING-PATH",
+    "domain_name_en": "Pathology Image Analysis",
+    "domain_name_ja": "病理画像"
+  },
+  {
+    "alias": "drug design",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-DRUG",
+    "domain_name_en": "Drug Discovery",
+    "domain_name_ja": "創薬"
+  },
+  {
+    "alias": "earthquake prediction",
+    "alias_lang": "en",
+    "domain_id": "EARTH-SCI-SEISMO",
+    "domain_name_en": "Seismology",
+    "domain_name_ja": "地震学"
+  },
+  {
+    "alias": "energy storage",
+    "alias_lang": "en",
+    "domain_id": "ENERGY-BATTERY",
+    "domain_name_en": "Battery & Energy Storage",
+    "domain_name_ja": "バッテリー"
+  },
+  {
+    "alias": "fintech",
+    "alias_lang": "en",
+    "domain_id": "ECON-BIZ-FINANCE",
+    "domain_name_en": "Finance & Investment",
+    "domain_name_ja": "金融"
+  },
+  {
+    "alias": "galaxy classification",
+    "alias_lang": "en",
+    "domain_id": "SPACE-ASTRO",
+    "domain_name_en": "Astronomy & Astrophysics",
+    "domain_name_ja": "天文学"
+  },
+  {
+    "alias": "gene editing",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-SYNBIO",
+    "domain_name_en": "Synthetic Biology",
+    "domain_name_ja": "合成生物学"
+  },
+  {
+    "alias": "generative art",
+    "alias_lang": "en",
+    "domain_id": "CREATIVE-VISUAL",
+    "domain_name_en": "Visual Arts & Design",
+    "domain_name_ja": "ビジュアルアート"
+  },
+  {
+    "alias": "genome analysis",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-GENOMICS",
+    "domain_name_en": "Genomics & Sequencing",
+    "domain_name_ja": "ゲノミクス"
+  },
+  {
+    "alias": "image recognition",
+    "alias_lang": "en",
+    "domain_id": "COMP-SCI-CV",
+    "domain_name_en": "Computer Vision",
+    "domain_name_ja": "コンピュータビジョン"
+  },
+  {
+    "alias": "language models",
+    "alias_lang": "en",
+    "domain_id": "COMP-SCI-NLP",
+    "domain_name_en": "Natural Language Processing",
+    "domain_name_ja": "自然言語処理"
+  },
+  {
+    "alias": "legal tech",
+    "alias_lang": "en",
+    "domain_id": "LAW-POLICY-CONTRACT",
+    "domain_name_en": "Contract Analysis",
+    "domain_name_ja": "契約分析"
+  },
+  {
+    "alias": "logistics optimization",
+    "alias_lang": "en",
+    "domain_id": "ECON-BIZ-SUPPLY",
+    "domain_name_en": "Supply Chain & Logistics",
+    "domain_name_ja": "サプライチェーン"
+  },
+  {
+    "alias": "materials informatics",
+    "alias_lang": "en",
+    "domain_id": "PHYS-SCI-MATDESIGN",
+    "domain_name_en": "Materials Design & Discovery",
+    "domain_name_ja": "材料設計"
+  },
+  {
+    "alias": "molecular generation",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-DRUG-MOLGEN",
+    "domain_name_en": "Molecular Generation / De Novo Design",
+    "domain_name_ja": "分子生成"
+  },
+  {
+    "alias": "pandemic modeling",
+    "alias_lang": "en",
+    "domain_id": "MED-HEALTH-EPIDEM",
+    "domain_name_en": "Epidemiology & Public Health",
+    "domain_name_ja": "疫学"
+  },
+  {
+    "alias": "patent analysis",
+    "alias_lang": "en",
+    "domain_id": "LAW-POLICY-IP",
+    "domain_name_en": "Intellectual Property",
+    "domain_name_ja": "知的財産"
+  },
+  {
+    "alias": "pathology AI",
+    "alias_lang": "en",
+    "domain_id": "MED-HEALTH-IMAGING",
+    "domain_name_en": "Medical Imaging",
+    "domain_name_ja": "医用画像"
+  },
+  {
+    "alias": "pharmaceutical research",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-DRUG",
+    "domain_name_en": "Drug Discovery",
+    "domain_name_ja": "創薬"
+  },
+  {
+    "alias": "plasma control",
+    "alias_lang": "en",
+    "domain_id": "ENERGY-FUSION",
+    "domain_name_en": "Fusion Energy",
+    "domain_name_ja": "核融合"
+  },
+  {
+    "alias": "precision medicine",
+    "alias_lang": "en",
+    "domain_id": "MED-HEALTH-GENOMICMED",
+    "domain_name_en": "Genomic Medicine",
+    "domain_name_ja": "ゲノム医療"
+  },
+  {
+    "alias": "procedural generation",
+    "alias_lang": "en",
+    "domain_id": "CREATIVE-GAME",
+    "domain_name_en": "Game Development",
+    "domain_name_ja": "ゲーム"
+  },
+  {
+    "alias": "protein engineering",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-PROTEIN",
+    "domain_name_en": "Protein Science",
+    "domain_name_ja": "タンパク質科学"
+  },
+  {
+    "alias": "protein folding",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-DRUG-PROTEIN",
+    "domain_name_en": "Protein Structure Prediction",
+    "domain_name_ja": "タンパク質構造予測"
+  },
+  {
+    "alias": "quantum information",
+    "alias_lang": "en",
+    "domain_id": "PHYS-SCI-QUANTUM",
+    "domain_name_en": "Quantum Computing",
+    "domain_name_ja": "量子コンピューティング"
+  },
+  {
+    "alias": "radiology AI",
+    "alias_lang": "en",
+    "domain_id": "MED-HEALTH-IMAGING",
+    "domain_name_en": "Medical Imaging",
+    "domain_name_ja": "医用画像"
+  },
+  {
+    "alias": "reaction prediction",
+    "alias_lang": "en",
+    "domain_id": "CHEM-SYNTH",
+    "domain_name_en": "Synthetic Chemistry",
+    "domain_name_ja": "合成化学"
+  },
+  {
+    "alias": "retrosynthesis",
+    "alias_lang": "en",
+    "domain_id": "CHEM-SYNTH",
+    "domain_name_en": "Synthetic Chemistry",
+    "domain_name_ja": "合成化学"
+  },
+  {
+    "alias": "satellite imagery",
+    "alias_lang": "en",
+    "domain_id": "CLIMATE-ENV-REMOTE",
+    "domain_name_en": "Remote Sensing & Earth Observation",
+    "domain_name_ja": "リモートセンシング"
+  },
+  {
+    "alias": "smart farming",
+    "alias_lang": "en",
+    "domain_id": "AGRI-FOOD-PRECISION",
+    "domain_name_en": "Precision Agriculture",
+    "domain_name_ja": "精密農業"
+  },
+  {
+    "alias": "smart grid",
+    "alias_lang": "en",
+    "domain_id": "ENERGY-GRID",
+    "domain_name_en": "Grid Optimization",
+    "domain_name_ja": "電力網"
+  },
+  {
+    "alias": "smart manufacturing",
+    "alias_lang": "en",
+    "domain_id": "ENGINEERING-MFCT",
+    "domain_name_en": "Manufacturing & Robotics",
+    "domain_name_ja": "製造・ロボティクス"
+  },
+  {
+    "alias": "solid-state battery",
+    "alias_lang": "en",
+    "domain_id": "PHYS-SCI-MATDESIGN-BATTERY",
+    "domain_name_en": "Battery Materials Discovery",
+    "domain_name_ja": "バッテリー材料"
+  },
+  {
+    "alias": "structural health monitoring",
+    "alias_lang": "en",
+    "domain_id": "ENGINEERING-CIVIL",
+    "domain_name_en": "Civil & Structural Engineering",
+    "domain_name_ja": "土木・構造"
+  },
+  {
+    "alias": "structure prediction",
+    "alias_lang": "en",
+    "domain_id": "LIFE-SCI-DRUG-PROTEIN",
+    "domain_name_en": "Protein Structure Prediction",
+    "domain_name_ja": "タンパク質構造予測"
+  },
+  {
+    "alias": "superconductor",
+    "alias_lang": "en",
+    "domain_id": "PHYS-SCI-CONDMAT",
+    "domain_name_en": "Condensed Matter Physics",
+    "domain_name_ja": "凝縮系物理"
+  },
+  {
+    "alias": "text mining",
+    "alias_lang": "en",
+    "domain_id": "COMP-SCI-NLP",
+    "domain_name_en": "Natural Language Processing",
+    "domain_name_ja": "自然言語処理"
+  },
+  {
+    "alias": "threat detection",
+    "alias_lang": "en",
+    "domain_id": "COMP-SCI-CYBERSEC",
+    "domain_name_en": "Cybersecurity",
+    "domain_name_ja": "サイバーセキュリティ"
+  },
+  {
+    "alias": "transit detection",
+    "alias_lang": "en",
+    "domain_id": "SPACE-EXOPLANET",
+    "domain_name_en": "Exoplanet Detection",
+    "domain_name_ja": "系外惑星"
+  },
+  {
+    "alias": "weather prediction",
+    "alias_lang": "en",
+    "domain_id": "EARTH-SCI-WEATHER",
+    "domain_name_en": "Weather Forecasting",
+    "domain_name_ja": "気象学"
+  },
+  {
+    "alias": "バイオサイエンス",
+    "alias_lang": "ja",
+    "domain_id": "LIFE-SCI",
+    "domain_name_en": "Life Sciences",
+    "domain_name_ja": "生命科学"
+  },
+  {
+    "alias": "医薬品開発",
+    "alias_lang": "ja",
+    "domain_id": "LIFE-SCI-DRUG",
+    "domain_name_en": "Drug Discovery",
+    "domain_name_ja": "創薬"
+  }
+]
