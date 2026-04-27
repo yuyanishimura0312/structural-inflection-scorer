@@ -5,12 +5,18 @@
     "domain_name_ja": "農業・食料",
     "hierarchy_level": 1,
     "parent_domain_en": null,
-    "is_ai_accelerated": false,
-    "confidence_tier": "tentative",
-    "mention_count": 6,
-    "source_count": 6,
-    "consensus_score": 0.45,
-    "primary_mechanisms": [],
+    "is_ai_accelerated": true,
+    "confidence_tier": "moderate",
+    "mention_count": 18,
+    "source_count": 17,
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "MULTIMODAL_ANALYSIS",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS",
+      "DATA_LABELING"
+    ],
     "primary_ai_capabilities": [
       "deep learning, machine learning, CNNs, LSTM, random forests",
       "machine learning, deep learning, explainable AI, remote sensing",
@@ -21,10 +27,11 @@
     "assessment_summary": null,
     "assessment_summary_ja": null,
     "key_caveats": [
-      "農業AIの便益は最も支援を必要とする途上国の小規模農家に届きにくく、食料安全保障格差を拡大させる可能性がある"
+      "農業AIの便益は最も支援を必要とする途上国の小規模農家に届きにくく、食料安全保障格差を拡大させる可能性がある",
+      "Regulatory approval for CRISPR-edited crops varies by country and limits deployment"
     ],
     "earliest_claim_year": 2019,
-    "latest_claim_year": 2025
+    "latest_claim_year": 2026
   },
   {
     "domain_id": "CHEM",
@@ -36,9 +43,13 @@
     "confidence_tier": "strong",
     "mention_count": 18,
     "source_count": 17,
-    "consensus_score": 0.35000000000000003,
+    "consensus_score": 0.3777777777777778,
     "primary_mechanisms": [
-      "HYPOTHESIS_GEN"
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS",
+      "SIMULATION_EMULATION"
     ],
     "primary_ai_capabilities": [
       "agentic AI, robotic laboratory systems, LLM-based agents",
@@ -68,8 +79,14 @@
     "confidence_tier": "strong",
     "mention_count": 19,
     "source_count": 18,
-    "consensus_score": 0.30000000000000004,
-    "primary_mechanisms": [],
+    "consensus_score": 0.3578947368421053,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "EXPERT_AUGMENTATION",
+      "CROSS_DOMAIN_TRANSFER",
+      "SIMULATION_EMULATION",
+      "MOLECULE_DESIGN"
+    ],
     "primary_ai_capabilities": [
       "AI weather models, machine learning-based climate analysis",
       "foundation models, large language models",
@@ -97,13 +114,15 @@
     "parent_domain_en": null,
     "is_ai_accelerated": true,
     "confidence_tier": "strong",
-    "mention_count": 55,
-    "source_count": 52,
-    "consensus_score": 0.43714285714285717,
+    "mention_count": 68,
+    "source_count": 65,
+    "consensus_score": 0.4161764705882353,
     "primary_mechanisms": [
-      "LITERATURE_SYNTHESIS",
       "HYPOTHESIS_GEN",
-      "WORKFLOW_AUTOMATION"
+      "WORKFLOW_AUTOMATION",
+      "EXPERT_AUGMENTATION",
+      "LITERATURE_SYNTHESIS",
+      "CODE_ACCELERATION"
     ],
     "primary_ai_capabilities": [
       "GitHub CopilotによるAIコード生成",
@@ -134,8 +153,14 @@
     "confidence_tier": "moderate",
     "mention_count": 19,
     "source_count": 18,
-    "consensus_score": 0.45,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4052631578947368,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "MULTIMODAL_ANALYSIS",
+      "EXPERT_AUGMENTATION",
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "生成AIによるクリエイティブアイデア提案",
       "text-to-image diffusion models, generative AI",
@@ -163,8 +188,14 @@
     "confidence_tier": "strong",
     "mention_count": 19,
     "source_count": 16,
-    "consensus_score": 0.46666666666666673,
-    "primary_mechanisms": [],
+    "consensus_score": 0.41052631578947374,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "CROSS_DOMAIN_TRANSFER",
+      "MULTIMODAL_ANALYSIS",
+      "MOLECULE_DESIGN"
+    ],
     "primary_ai_capabilities": [
       "graph neural networks, machine learning weather prediction",
       "deep learning, machine learning, foundation models",
@@ -190,8 +221,14 @@
     "confidence_tier": "strong",
     "mention_count": 44,
     "source_count": 42,
-    "consensus_score": 0.47777777777777775,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4272727272727273,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION",
+      "CROSS_DOMAIN_TRANSFER",
+      "CODE_ACCELERATION",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "生成AI（汎用）",
       "LLMによるレジュメスクリーニング・候補者ランキング",
@@ -218,11 +255,17 @@
     "hierarchy_level": 1,
     "parent_domain_en": null,
     "is_ai_accelerated": true,
-    "confidence_tier": "definitive",
+    "confidence_tier": "strong",
     "mention_count": 25,
     "source_count": 23,
-    "consensus_score": 0.5,
-    "primary_mechanisms": [],
+    "consensus_score": 0.424,
+    "primary_mechanisms": [
+      "EXPERT_AUGMENTATION",
+      "HYPOTHESIS_GEN",
+      "SIMULATION_EMULATION",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS"
+    ],
     "primary_ai_capabilities": [
       "GPT-4によるソクラテス式対話型チュータリング",
       "適応型学習パス推薦・リアルタイムフィードバック",
@@ -250,10 +293,13 @@
     "confidence_tier": "strong",
     "mention_count": 19,
     "source_count": 16,
-    "consensus_score": 0.44000000000000006,
+    "consensus_score": 0.41052631578947374,
     "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN",
       "LITERATURE_SYNTHESIS",
-      "HYPOTHESIS_GEN"
+      "SIMULATION_EMULATION",
+      "CROSS_DOMAIN_TRANSFER"
     ],
     "primary_ai_capabilities": [
       "Deep Reinforcement Learning (DRL)",
@@ -275,11 +321,17 @@
     "hierarchy_level": 1,
     "parent_domain_en": null,
     "is_ai_accelerated": true,
-    "confidence_tier": "moderate",
-    "mention_count": 6,
-    "source_count": 6,
-    "consensus_score": 0.6666666666666666,
-    "primary_mechanisms": [],
+    "confidence_tier": "strong",
+    "mention_count": 31,
+    "source_count": 30,
+    "consensus_score": 0.45161290322580644,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "SIMULATION_EMULATION",
+      "LITERATURE_SYNTHESIS",
+      "MULTIMODAL_ANALYSIS"
+    ],
     "primary_ai_capabilities": [
       "machine learning, deep learning, RNNs, Random Forest, SVMs",
       "プロセス最適化AI・自律輸送",
@@ -289,9 +341,14 @@
     ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
-    "key_caveats": [],
+    "key_caveats": [
+      "Formal verification and correctness guarantees for AI-generated designs remain a major open challenge",
+      "Cybersecurity risks in AI-controlled grid systems require careful consideration",
+      "DRL stability guarantees are weaker than classical control theory; safety validation required",
+      "Generative models can hallucinate chemically infeasible structures; experimental validation required"
+    ],
     "earliest_claim_year": 2021,
-    "latest_claim_year": 2025
+    "latest_claim_year": 2026
   },
   {
     "domain_id": "HUMANITIES",
@@ -303,9 +360,13 @@
     "confidence_tier": "moderate",
     "mention_count": 14,
     "source_count": 14,
-    "consensus_score": 0.4,
+    "consensus_score": 0.37857142857142856,
     "primary_mechanisms": [
-      "LITERATURE_SYNTHESIS"
+      "LITERATURE_SYNTHESIS",
+      "KNOWLEDGE_EXTRACTION",
+      "HYPOTHESIS_GEN",
+      "EXPERT_AUGMENTATION",
+      "WORKFLOW_AUTOMATION"
     ],
     "primary_ai_capabilities": [
       "NLP, text mining, deep learning language models",
@@ -330,8 +391,14 @@
     "confidence_tier": "strong",
     "mention_count": 15,
     "source_count": 14,
-    "consensus_score": 0.42857142857142855,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4533333333333333,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS",
+      "CODE_ACCELERATION",
+      "MULTIMODAL_ANALYSIS"
+    ],
     "primary_ai_capabilities": [
       "法的推論・規則適用・問題特定・条文解釈",
       "large language models, natural language processing",
@@ -358,16 +425,16 @@
     "hierarchy_level": 1,
     "parent_domain_en": null,
     "is_ai_accelerated": true,
-    "confidence_tier": "definitive",
+    "confidence_tier": "strong",
     "mention_count": 118,
     "source_count": 102,
-    "consensus_score": 0.5833333333333334,
+    "consensus_score": 0.43983050847457633,
     "primary_mechanisms": [
-      "MOLECULE_DESIGN",
-      "MULTIMODAL_ANALYSIS",
       "HYPOTHESIS_GEN",
-      "WORKFLOW_AUTOMATION",
-      "LITERATURE_SYNTHESIS"
+      "MOLECULE_DESIGN",
+      "CLINICAL_TRIAL_SUPPORT",
+      "LITERATURE_SYNTHESIS",
+      "CROSS_DOMAIN_TRANSFER"
     ],
     "primary_ai_capabilities": [
       "AlphaFold3（拡散モデルベース複合体予測）",
@@ -395,12 +462,16 @@
     "hierarchy_level": 1,
     "parent_domain_en": null,
     "is_ai_accelerated": true,
-    "confidence_tier": "moderate",
-    "mention_count": 5,
-    "source_count": 5,
-    "consensus_score": 0.35000000000000003,
+    "confidence_tier": "strong",
+    "mention_count": 13,
+    "source_count": 13,
+    "consensus_score": 0.4,
     "primary_mechanisms": [
-      "HYPOTHESIS_GEN"
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION",
+      "EXPERT_AUGMENTATION",
+      "CODE_ACCELERATION",
+      "SIMULATION_EMULATION"
     ],
     "primary_ai_capabilities": [
       "large language models, neuro-symbolic systems, reinforcement learning",
@@ -415,7 +486,7 @@
       "Performance on open-ended research mathematics (vs. olympiad problems) remains limited",
       "LLMの「数学的能力」は実際には脆弱な記憶と浅いヒューリスティックの組み合わせである可能性が高い"
     ],
-    "earliest_claim_year": 2023,
+    "earliest_claim_year": 2021,
     "latest_claim_year": 2025
   },
   {
@@ -426,10 +497,16 @@
     "parent_domain_en": null,
     "is_ai_accelerated": true,
     "confidence_tier": "strong",
-    "mention_count": 32,
-    "source_count": 30,
-    "consensus_score": 0.4315789473684211,
-    "primary_mechanisms": [],
+    "mention_count": 39,
+    "source_count": 37,
+    "consensus_score": 0.4358974358974359,
+    "primary_mechanisms": [
+      "CLINICAL_TRIAL_SUPPORT",
+      "MULTIMODAL_ANALYSIS",
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN",
+      "LITERATURE_SYNTHESIS"
+    ],
     "primary_ai_capabilities": [
       "CBTベースのAIチャットボットによる心理的介入",
       "deep learning, convolutional neural networks, foundation models",
@@ -456,12 +533,16 @@
     "hierarchy_level": 1,
     "parent_domain_en": null,
     "is_ai_accelerated": true,
-    "confidence_tier": "definitive",
+    "confidence_tier": "strong",
     "mention_count": 32,
     "source_count": 29,
-    "consensus_score": 0.5,
+    "consensus_score": 0.421875,
     "primary_mechanisms": [
-      "HYPOTHESIS_GEN"
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN",
+      "SIMULATION_EMULATION",
+      "CROSS_DOMAIN_TRANSFER",
+      "WORKFLOW_AUTOMATION"
     ],
     "primary_ai_capabilities": [
       "graph neural networks, message-passing neural networks",
@@ -486,9 +567,13 @@
     "confidence_tier": "strong",
     "mention_count": 26,
     "source_count": 25,
-    "consensus_score": 0.3166666666666667,
+    "consensus_score": 0.37307692307692314,
     "primary_mechanisms": [
-      "WORKFLOW_AUTOMATION"
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "EXPERT_AUGMENTATION",
+      "CLINICAL_TRIAL_SUPPORT"
     ],
     "primary_ai_capabilities": [
       "AIシステムの社会・文化的影響の質的調査",
@@ -517,10 +602,16 @@
     "parent_domain_en": null,
     "is_ai_accelerated": true,
     "confidence_tier": "moderate",
-    "mention_count": 5,
-    "source_count": 5,
-    "consensus_score": 0.8,
-    "primary_mechanisms": [],
+    "mention_count": 14,
+    "source_count": 12,
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "DATA_LABELING",
+      "WORKFLOW_AUTOMATION",
+      "MULTIMODAL_ANALYSIS",
+      "SIMULATION_EMULATION",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "deep learning, convolutional neural networks, attention mechanisms",
       "Convolutional vision Transformer (CvT)",
@@ -541,17 +632,31 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Agriculture & Food",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 6,
+    "source_count": 6,
+    "consensus_score": 0.3666666666666667,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "DATA_LABELING",
+      "MULTIMODAL_ANALYSIS",
+      "WORKFLOW_AUTOMATION"
+    ],
+    "primary_ai_capabilities": [
+      "ML/DL integrated with GWAS for genomic crop improvement",
+      "Deep learning for plant disease detection and field phenotyping robots with LiDAR+hyperspectral sensors",
+      "Attention networks and AI for genomic and phenotypic crop breeding design",
+      "AI-integrated high-throughput phenotyping and genomic selection",
+      "AI integration with CRISPR, genomics, and HTP for disease-resistant crop engineering"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
-    "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "key_caveats": [
+      "Regulatory approval for CRISPR-edited crops varies by country and limits deployment"
+    ],
+    "earliest_claim_year": 2024,
+    "latest_claim_year": 2026
   },
   {
     "domain_id": "AGRI-FOOD-PRECISION",
@@ -560,17 +665,29 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Agriculture & Food",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 6,
+    "source_count": 6,
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "MULTIMODAL_ANALYSIS",
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "EXPERT_AUGMENTATION"
+    ],
+    "primary_ai_capabilities": [
+      "CNN and ML for satellite imagery-based crop yield estimation",
+      "XAI-integrated ML models for precision crop yield prediction",
+      "AI-powered drone data analytics (multispectral/hyperspectral imaging + ML)",
+      "Deep learning on UAV imagery for automated orchard yield estimation",
+      "ML and DL models (RF, SVM, ANN, CNN) integrated with satellite remote sensing for crop yield prediction"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
     "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "earliest_claim_year": 2024,
+    "latest_claim_year": 2025
   },
   {
     "domain_id": "CHEM-CATALY",
@@ -582,8 +699,14 @@
     "confidence_tier": "tentative",
     "mention_count": 5,
     "source_count": 5,
-    "consensus_score": 0.30000000000000004,
-    "primary_mechanisms": [],
+    "consensus_score": 0.36,
+    "primary_mechanisms": [
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS",
+      "SIMULATION_EMULATION"
+    ],
     "primary_ai_capabilities": [
       "LLM-based agents, robotic chemistry systems",
       "machine learning, graph neural networks, large language models",
@@ -607,8 +730,12 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "SIMULATION_EMULATION",
+      "HYPOTHESIS_GEN",
+      "CROSS_DOMAIN_TRANSFER"
+    ],
     "primary_ai_capabilities": [
       "MACE-OFF (Transferable ML Force Field)",
       "Deep Learning DFT Emulator"
@@ -629,9 +756,12 @@
     "confidence_tier": "tentative",
     "mention_count": 8,
     "source_count": 8,
-    "consensus_score": 0.3333333333333333,
+    "consensus_score": 0.375,
     "primary_mechanisms": [
-      "HYPOTHESIS_GEN"
+      "WORKFLOW_AUTOMATION",
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS"
     ],
     "primary_ai_capabilities": [
       "agentic AI, robotic laboratory systems, LLM-based agents",
@@ -660,8 +790,11 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.5,
+    "primary_mechanisms": [
+      "MOLECULE_DESIGN",
+      "LITERATURE_SYNTHESIS"
+    ],
     "primary_ai_capabilities": [
       "Machine Learning for high-throughput screening",
       "Graph Neural Networks for MOF screening"
@@ -682,8 +815,13 @@
     "confidence_tier": "strong",
     "mention_count": 13,
     "source_count": 13,
-    "consensus_score": 0.2857142857142857,
-    "primary_mechanisms": [],
+    "consensus_score": 0.3230769230769231,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "CROSS_DOMAIN_TRANSFER",
+      "SIMULATION_EMULATION",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "AI weather models, machine learning-based climate analysis",
       "foundation models, large language models",
@@ -713,8 +851,10 @@
     "confidence_tier": "insufficient",
     "mention_count": 1,
     "source_count": 1,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "Machine Learning for Global Wildfire Probability Forecasting"
     ],
@@ -731,17 +871,29 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Computer Science & AI",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 7,
+    "source_count": 7,
+    "consensus_score": 0.37142857142857144,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "MULTIMODAL_ANALYSIS",
+      "DATA_LABELING",
+      "CROSS_DOMAIN_TRANSFER",
+      "SIMULATION_EMULATION"
+    ],
+    "primary_ai_capabilities": [
+      "Vision Foundation Model (SAM fine-tuning) for microscopy segmentation",
+      "Universal cell segmentation foundation model (CellFinder + SAM)",
+      "Reinforcement learning for autonomous STED microscopy acquisition",
+      "Deep learning-based visual inspection (YOLOv8, CNN)",
+      "Computer vision algorithms for 3D nanostructure reconstruction from AFM data"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
     "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "earliest_claim_year": 2023,
+    "latest_claim_year": 2025
   },
   {
     "domain_id": "COMP-SCI-CYBERSEC",
@@ -754,7 +906,11 @@
     "mention_count": 1,
     "source_count": 1,
     "consensus_score": 0.6,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "CODE_ACCELERATION",
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "AI（脅威検出・自動レスポンス）"
     ],
@@ -776,8 +932,9 @@
     "source_count": 9,
     "consensus_score": 0.3666666666666667,
     "primary_mechanisms": [
-      "LITERATURE_SYNTHESIS",
-      "HYPOTHESIS_GEN"
+      "HYPOTHESIS_GEN",
+      "CROSS_DOMAIN_TRANSFER",
+      "LITERATURE_SYNTHESIS"
     ],
     "primary_ai_capabilities": [
       "llm_scaling",
@@ -805,17 +962,32 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Computer Science & AI",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 6,
+    "source_count": 6,
+    "consensus_score": 0.3666666666666667,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "SIMULATION_EMULATION",
+      "LITERATURE_SYNTHESIS",
+      "MULTIMODAL_ANALYSIS"
+    ],
+    "primary_ai_capabilities": [
+      "AI-driven lab automation robots with closed-loop experimental cycles",
+      "Imitation learning and deep reinforcement learning for selective harvesting robots",
+      "AI vision (ripeness detection + manipulation planning) for autonomous strawberry picking",
+      "Closed-loop AI + robotic automation for autonomous scientific experimentation (Bayesian optimization)",
+      "DL vision + grasp planning for intelligent robotic fruit harvesting"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
-    "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "key_caveats": [
+      "Challenges in robust autonomy and cross-lab standardization remain unsolved",
+      "Scaling law claims for scientific discovery are speculative; empirical validation limited"
+    ],
+    "earliest_claim_year": 2024,
+    "latest_claim_year": 2025
   },
   {
     "domain_id": "COMP-SCI-SE",
@@ -827,9 +999,13 @@
     "confidence_tier": "strong",
     "mention_count": 16,
     "source_count": 15,
-    "consensus_score": 0.8,
+    "consensus_score": 0.4375,
     "primary_mechanisms": [
-      "WORKFLOW_AUTOMATION"
+      "CODE_ACCELERATION",
+      "HYPOTHESIS_GEN",
+      "EXPERT_AUGMENTATION",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS"
     ],
     "primary_ai_capabilities": [
       "GitHub CopilotによるAIコード生成",
@@ -853,11 +1029,15 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Creative Arts & Media",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "テキスト→動画生成（Sora）",
       "拡散モデルベースの高精細動画生成（最長60秒）",
@@ -876,11 +1056,15 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Creative Arts & Media",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "LLMによる動的NPC対話・コンテキスト認識コンテンツ生成",
       "LLMによるクロスプラットフォーム動的NPC対話・記憶同期",
@@ -902,8 +1086,11 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS"
+    ],
     "primary_ai_capabilities": [
       "テキストプロンプト→音楽生成",
       "AI音楽生成（Suno・Udio等）へのユーザー知覚"
@@ -924,8 +1111,13 @@
     "confidence_tier": "tentative",
     "mention_count": 5,
     "source_count": 5,
-    "consensus_score": 0.4666666666666666,
-    "primary_mechanisms": [],
+    "consensus_score": 0.42000000000000004,
+    "primary_mechanisms": [
+      "MULTIMODAL_ANALYSIS",
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "text-to-image diffusion models, generative AI",
       "diffusion models, text-to-image generation",
@@ -949,11 +1141,15 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Creative Arts & Media",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 5,
     "source_count": 4,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "EXPERT_AUGMENTATION",
+      "LITERATURE_SYNTHESIS"
+    ],
     "primary_ai_capabilities": [
       "生成AIによるクリエイティブアイデア提案",
       "SLMによる短編クリエイティブテキスト生成",
@@ -973,11 +1169,13 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Earth Sciences",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "WenHai (Deep Neural Network for Ocean Forecasting)",
       "Neural Networks + Spectral Clustering for Sea Level Prediction",
@@ -996,11 +1194,14 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Earth Sciences",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "CLINICAL_TRIAL_SUPPORT"
+    ],
     "primary_ai_capabilities": [
       "EQTransformer (Transformer with Hierarchical Attention)",
       "XGBoost, Random Forest for Ground Motion Prediction",
@@ -1019,11 +1220,16 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Earth Sciences",
     "is_ai_accelerated": true,
-    "confidence_tier": "strong",
+    "confidence_tier": "moderate",
     "mention_count": 10,
     "source_count": 7,
-    "consensus_score": 0.8,
-    "primary_mechanisms": [],
+    "consensus_score": 0.44000000000000006,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "MOLECULE_DESIGN",
+      "CROSS_DOMAIN_TRANSFER"
+    ],
     "primary_ai_capabilities": [
       "graph neural networks, machine learning weather prediction",
       "気象AI基盤モデル・宇宙科学AI",
@@ -1047,8 +1253,13 @@
     "confidence_tier": "strong",
     "mention_count": 13,
     "source_count": 13,
-    "consensus_score": 0.4714285714285714,
-    "primary_mechanisms": [],
+    "consensus_score": 0.43846153846153846,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS",
+      "CODE_ACCELERATION"
+    ],
     "primary_ai_capabilities": [
       "large language models, NLP, transformer models",
       "AIアドバイザリー・自動審査・フィンテックAI",
@@ -1077,8 +1288,10 @@
     "confidence_tier": "tentative",
     "mention_count": 8,
     "source_count": 8,
-    "consensus_score": 0.4,
-    "primary_mechanisms": [],
+    "consensus_score": 0.3625,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "LLMによるレジュメスクリーニング・候補者ランキング",
       "AIによる採用スクリーニング・評価・求人広告配信",
@@ -1101,12 +1314,17 @@
     "domain_name_ja": "マーケティング",
     "hierarchy_level": 2,
     "parent_domain_en": "Economics & Business",
-    "is_ai_accelerated": true,
-    "confidence_tier": "moderate",
+    "is_ai_accelerated": false,
+    "confidence_tier": "tentative",
     "mention_count": 7,
     "source_count": 7,
-    "consensus_score": 0.6,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4571428571428572,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "CODE_ACCELERATION",
+      "WORKFLOW_AUTOMATION",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "生成AIによるコンテンツ生成・顧客セグメンテーション・パーソナライゼーション",
       "生成AI（コンテンツ生成・パーソナライゼーション）",
@@ -1130,8 +1348,11 @@
     "confidence_tier": "tentative",
     "mention_count": 4,
     "source_count": 4,
-    "consensus_score": 0.6,
-    "primary_mechanisms": [],
+    "consensus_score": 0.5,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "生成AI（需要予測・在庫最適化）",
       "生成AI（需要予測・ネットワーク最適化・スペンド分析）",
@@ -1154,8 +1375,12 @@
     "confidence_tier": "insufficient",
     "mention_count": 1,
     "source_count": 1,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.2,
+    "primary_mechanisms": [
+      "EXPERT_AUGMENTATION",
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "GPT-4による自動エッセイ採点・フィードバック生成"
     ],
@@ -1176,7 +1401,9 @@
     "mention_count": 1,
     "source_count": 1,
     "consensus_score": 0.6,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "生成AI（個別最適化チュータリング・教育コンテンツ生成）"
     ],
@@ -1196,8 +1423,13 @@
     "confidence_tier": "moderate",
     "mention_count": 10,
     "source_count": 9,
-    "consensus_score": 0.6,
-    "primary_mechanisms": [],
+    "consensus_score": 0.42000000000000004,
+    "primary_mechanisms": [
+      "EXPERT_AUGMENTATION",
+      "SIMULATION_EMULATION",
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "GPT-4によるソクラテス式対話型チュータリング",
       "適応型学習パス推薦・リアルタイムフィードバック",
@@ -1222,7 +1454,13 @@
     "mention_count": 6,
     "source_count": 6,
     "consensus_score": 0.4000000000000001,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN",
+      "SIMULATION_EMULATION",
+      "CROSS_DOMAIN_TRANSFER",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "graph neural networks, machine learning potentials, active learning",
       "machine learning potentials, graph neural networks, active learning",
@@ -1243,11 +1481,14 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Energy",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 4,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "Deep Reinforcement Learning (DRL)",
       "AI Plasma Control across multiple fusion devices",
@@ -1266,11 +1507,14 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Energy",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "Deep Reinforcement Learning (PPO, SAC)",
       "Deep Reinforcement Learning for Energy Management",
@@ -1289,17 +1533,31 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Engineering & Technology",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 7,
+    "source_count": 7,
+    "consensus_score": 0.31428571428571433,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "SIMULATION_EMULATION",
+      "MOLECULE_DESIGN",
+      "LITERATURE_SYNTHESIS"
+    ],
+    "primary_ai_capabilities": [
+      "ML-enabled multi-objective reaction optimization in flow chemistry",
+      "Generative AI for multi-scale chemical engineering (quantum to macro-scale)",
+      "Hybrid AI models (data-driven + mechanistic) for bioprocess real-time control and optimization",
+      "AI-driven autonomous catalyst discovery (Bayesian optimization, self-driving labs)",
+      "Hybrid mechanistic+data-driven models for (bio)chemical engineering process optimization"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
-    "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "key_caveats": [
+      "Generative models can hallucinate chemically infeasible structures; experimental validation required"
+    ],
+    "earliest_claim_year": 2024,
+    "latest_claim_year": 2025
   },
   {
     "domain_id": "ENGINEERING-CIVIL",
@@ -1308,17 +1566,29 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Engineering & Technology",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 6,
+    "source_count": 6,
+    "consensus_score": 0.43333333333333335,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "SIMULATION_EMULATION",
+      "MULTIMODAL_ANALYSIS",
+      "LITERATURE_SYNTHESIS"
+    ],
+    "primary_ai_capabilities": [
+      "CNN and deep learning for structural damage detection and health monitoring",
+      "PSPNet with ResNet-18 and spatial attention for pixel-level crack segmentation from UAV images",
+      "ML/AI for structural health monitoring, geotechnical analysis, traffic systems, and earthquake-resistant design",
+      "AI for earthquake early warning, real-time SHM, and generative design for earthquake-resistant structures",
+      "LSTM, CNN, GCN, and attention mechanisms for spatiotemporal traffic flow prediction"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
     "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "earliest_claim_year": 2024,
+    "latest_claim_year": 2025
   },
   {
     "domain_id": "ENGINEERING-ELEC",
@@ -1326,18 +1596,34 @@
     "domain_name_ja": "電気・電子",
     "hierarchy_level": 2,
     "parent_domain_en": "Engineering & Technology",
-    "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "is_ai_accelerated": true,
+    "confidence_tier": "moderate",
+    "mention_count": 7,
+    "source_count": 7,
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "SIMULATION_EMULATION",
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN",
+      "DATA_LABELING"
+    ],
+    "primary_ai_capabilities": [
+      "Large Circuit Models (LCMs) for AI-native EDA across chip design flow",
+      "Deep reinforcement learning for chip floorplanning (AlphaChip/graph placement)",
+      "AI for real-time grid optimization, predictive maintenance, and renewable energy integration",
+      "Deep reinforcement learning (TD3, DRL) for power converter and inverter control",
+      "CNN and AI for radar signal processing, target classification, and human activity recognition"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
-    "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "key_caveats": [
+      "Formal verification and correctness guarantees for AI-generated designs remain a major open challenge",
+      "Cybersecurity risks in AI-controlled grid systems require careful consideration",
+      "DRL stability guarantees are weaker than classical control theory; safety validation required"
+    ],
+    "earliest_claim_year": 2021,
+    "latest_claim_year": 2025
   },
   {
     "domain_id": "ENGINEERING-MFCT",
@@ -1346,11 +1632,17 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Engineering & Technology",
     "is_ai_accelerated": true,
-    "confidence_tier": "moderate",
-    "mention_count": 6,
-    "source_count": 6,
-    "consensus_score": 0.6666666666666666,
-    "primary_mechanisms": [],
+    "confidence_tier": "strong",
+    "mention_count": 11,
+    "source_count": 10,
+    "consensus_score": 0.5818181818181819,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "SIMULATION_EMULATION",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "machine learning, deep learning, RNNs, Random Forest, SVMs",
       "プロセス最適化AI・自律輸送",
@@ -1362,7 +1654,7 @@
     "assessment_summary_ja": null,
     "key_caveats": [],
     "earliest_claim_year": 2021,
-    "latest_claim_year": 2025
+    "latest_claim_year": 2026
   },
   {
     "domain_id": "LAW-POLICY-COMPLIANCE",
@@ -1375,7 +1667,9 @@
     "mention_count": 1,
     "source_count": 1,
     "consensus_score": 0.4,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "MOLECULE_DESIGN"
+    ],
     "primary_ai_capabilities": [
       "regulatory_ai"
     ],
@@ -1398,7 +1692,11 @@
     "mention_count": 2,
     "source_count": 2,
     "consensus_score": 0.6,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "生成AI・NLP（法文書解析・契約レビュー）",
       "LLMによる契約書分析・リスク評価・コンプライアンス自動化"
@@ -1416,11 +1714,15 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Law & Policy",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "CODE_ACCELERATION",
+      "MULTIMODAL_ANALYSIS"
+    ],
     "primary_ai_capabilities": [
       "音楽生成AIモデルの訓練データとしての著作権音源使用",
       "拡散モデルによる画像生成（著作権問題としての評価）",
@@ -1439,13 +1741,16 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Life Sciences",
     "is_ai_accelerated": true,
-    "confidence_tier": "definitive",
+    "confidence_tier": "strong",
     "mention_count": 47,
     "source_count": 41,
-    "consensus_score": 0.5357142857142857,
+    "consensus_score": 0.425531914893617,
     "primary_mechanisms": [
       "MOLECULE_DESIGN",
-      "HYPOTHESIS_GEN"
+      "HYPOTHESIS_GEN",
+      "CLINICAL_TRIAL_SUPPORT",
+      "WORKFLOW_AUTOMATION",
+      "KNOWLEDGE_EXTRACTION"
     ],
     "primary_ai_capabilities": [
       "AlphaFold3（拡散モデルベース複合体予測）",
@@ -1476,9 +1781,13 @@
     "confidence_tier": "tentative",
     "mention_count": 8,
     "source_count": 7,
-    "consensus_score": 0.0,
+    "consensus_score": 0.42500000000000004,
     "primary_mechanisms": [
-      "MULTIMODAL_ANALYSIS"
+      "MULTIMODAL_ANALYSIS",
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "EXPERT_AUGMENTATION",
+      "DATA_LABELING"
     ],
     "primary_ai_capabilities": [
       "水生生態学向けAI（深層学習、機械学習、トランスフォーマー）",
@@ -1503,10 +1812,13 @@
     "confidence_tier": "strong",
     "mention_count": 17,
     "source_count": 15,
-    "consensus_score": 0.55,
+    "consensus_score": 0.4235294117647059,
     "primary_mechanisms": [
-      "MULTIMODAL_ANALYSIS",
-      "WORKFLOW_AUTOMATION"
+      "CROSS_DOMAIN_TRANSFER",
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN",
+      "LITERATURE_SYNTHESIS",
+      "CLINICAL_TRIAL_SUPPORT"
     ],
     "primary_ai_capabilities": [
       "agentic AI, LLM-based agents",
@@ -1531,8 +1843,14 @@
     "confidence_tier": "tentative",
     "mention_count": 7,
     "source_count": 7,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "CLINICAL_TRIAL_SUPPORT",
+      "WORKFLOW_AUTOMATION",
+      "LITERATURE_SYNTHESIS",
+      "EXPERT_AUGMENTATION",
+      "DATA_LABELING"
+    ],
     "primary_ai_capabilities": [
       "Neuralink N1チップ（脳信号AIデコーダー搭載BCI）",
       "コネクトーム解析MLインフラ（CAVE）",
@@ -1559,11 +1877,13 @@
     "confidence_tier": "strong",
     "mention_count": 19,
     "source_count": 17,
-    "consensus_score": 0.7999999999999999,
+    "consensus_score": 0.5210526315789474,
     "primary_mechanisms": [
-      "MULTIMODAL_ANALYSIS",
       "MOLECULE_DESIGN",
-      "LITERATURE_SYNTHESIS"
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "EXPERT_AUGMENTATION",
+      "WORKFLOW_AUTOMATION"
     ],
     "primary_ai_capabilities": [
       "scientific large language models, multimodal models",
@@ -1592,7 +1912,11 @@
     "source_count": 10,
     "consensus_score": 0.4000000000000001,
     "primary_mechanisms": [
-      "MOLECULE_DESIGN"
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN",
+      "LITERATURE_SYNTHESIS",
+      "WORKFLOW_AUTOMATION",
+      "CLINICAL_TRIAL_SUPPORT"
     ],
     "primary_ai_capabilities": [
       "BERT-based models, large language models, deep learning",
@@ -1620,17 +1944,28 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Mathematics & Statistics",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 4,
+    "source_count": 4,
+    "consensus_score": 0.45,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "SIMULATION_EMULATION",
+      "EXPERT_AUGMENTATION",
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
+    "primary_ai_capabilities": [
+      "Graph neural networks and autoregressive models for combinatorial optimization",
+      "Combinatorial optimization augmented ML (COAML) combining OR with ML",
+      "Memory-enhanced neural combinatorial optimization solvers",
+      "ML augmented combinatorial algorithms combining ML with theoretical optimization guarantees"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
     "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "earliest_claim_year": 2021,
+    "latest_claim_year": 2024
   },
   {
     "domain_id": "MATH-STAT-THEOREM",
@@ -1642,8 +1977,10 @@
     "confidence_tier": "tentative",
     "mention_count": 4,
     "source_count": 4,
-    "consensus_score": 0.3333333333333333,
+    "consensus_score": 0.35000000000000003,
     "primary_mechanisms": [
+      "EXPERT_AUGMENTATION",
+      "CODE_ACCELERATION",
       "HYPOTHESIS_GEN"
     ],
     "primary_ai_capabilities": [
@@ -1671,7 +2008,13 @@
     "mention_count": 5,
     "source_count": 5,
     "consensus_score": 0.4,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "LITERATURE_SYNTHESIS",
+      "CLINICAL_TRIAL_SUPPORT",
+      "KNOWLEDGE_EXTRACTION",
+      "HYPOTHESIS_GEN",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "machine learning, natural language processing, hybrid AI-mechanistic models",
       "natural language processing, machine learning, EHR data mining",
@@ -1699,7 +2042,9 @@
     "mention_count": 1,
     "source_count": 1,
     "consensus_score": 0.4,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "CLINICAL_TRIAL_SUPPORT"
+    ],
     "primary_ai_capabilities": [
       "public_health_ai"
     ],
@@ -1718,17 +2063,34 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Medicine & Health",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
-    "mention_count": 0,
-    "source_count": 0,
-    "consensus_score": null,
-    "primary_mechanisms": [],
-    "primary_ai_capabilities": [],
+    "confidence_tier": "tentative",
+    "mention_count": 7,
+    "source_count": 7,
+    "consensus_score": 0.4571428571428572,
+    "primary_mechanisms": [
+      "CLINICAL_TRIAL_SUPPORT",
+      "MOLECULE_DESIGN",
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN",
+      "DATA_LABELING"
+    ],
+    "primary_ai_capabilities": [
+      "AlphaFold-based deep learning for proteome-wide missense variant pathogenicity prediction",
+      "Transformer-based LLMs and DL integrating evolutionary, structural, and multi-omics signals for variant effect prediction",
+      "AI+pharmacogenomics for drug response prediction and dosing guidance",
+      "ML for rare genetic disorder variant prioritization and drug response prediction (DeepDRA)",
+      "AI integration with genetic risk factor analysis for personalized precision medicine"
+    ],
     "assessment_summary": null,
     "assessment_summary_ja": null,
-    "key_caveats": [],
-    "earliest_claim_year": null,
-    "latest_claim_year": null
+    "key_caveats": [
+      "Algorithmic bias and inequitable global access remain challenges for clinical implementation",
+      "Algorithmic bias risk in models trained on non-diverse populations",
+      "Governance and data privacy challenges for cross-institutional AI-genomics implementation",
+      "Population diversity in training data critical; models trained on homogeneous populations show reduced accuracy in other groups"
+    ],
+    "earliest_claim_year": 2023,
+    "latest_claim_year": 2026
   },
   {
     "domain_id": "MED-HEALTH-IMAGING",
@@ -1740,8 +2102,14 @@
     "confidence_tier": "moderate",
     "mention_count": 10,
     "source_count": 10,
-    "consensus_score": 0.4800000000000001,
-    "primary_mechanisms": [],
+    "consensus_score": 0.44000000000000006,
+    "primary_mechanisms": [
+      "MULTIMODAL_ANALYSIS",
+      "CLINICAL_TRIAL_SUPPORT",
+      "HYPOTHESIS_GEN",
+      "CROSS_DOMAIN_TRANSFER",
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "deep learning, convolutional neural networks, foundation models",
       "foundation models, large language models, diffusion models",
@@ -1771,8 +2139,10 @@
     "confidence_tier": "tentative",
     "mention_count": 5,
     "source_count": 5,
-    "consensus_score": 0.4,
-    "primary_mechanisms": [],
+    "consensus_score": 0.44000000000000006,
+    "primary_mechanisms": [
+      "CLINICAL_TRIAL_SUPPORT"
+    ],
     "primary_ai_capabilities": [
       "CBTベースのAIチャットボットによる心理的介入",
       "AIチャットボットによるCBT提供・気分追跡・リアルタイムフィードバック",
@@ -1798,8 +2168,13 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "SIMULATION_EMULATION",
+      "HYPOTHESIS_GEN",
+      "DATA_LABELING",
+      "CROSS_DOMAIN_TRANSFER"
+    ],
     "primary_ai_capabilities": [
       "MACE (Equivariant Message Passing Neural Network)",
       "CNN and Fully Connected Neural Networks"
@@ -1817,12 +2192,16 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Physical & Materials Sciences",
     "is_ai_accelerated": true,
-    "confidence_tier": "definitive",
+    "confidence_tier": "strong",
     "mention_count": 24,
     "source_count": 21,
-    "consensus_score": 0.5,
+    "consensus_score": 0.4291666666666667,
     "primary_mechanisms": [
-      "HYPOTHESIS_GEN"
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN",
+      "CROSS_DOMAIN_TRANSFER",
+      "SIMULATION_EMULATION",
+      "EXPERT_AUGMENTATION"
     ],
     "primary_ai_capabilities": [
       "graph neural networks, message-passing neural networks",
@@ -1847,8 +2226,10 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "CODE_ACCELERATION"
+    ],
     "primary_ai_capabilities": [
       "AXOL1TL, Graph Autoencoders, J-JEPA",
       "Quantum Anomaly Detection (Quantum-Classical Hybrid)"
@@ -1866,11 +2247,16 @@
     "hierarchy_level": 2,
     "parent_domain_en": "Physical & Materials Sciences",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "WORKFLOW_AUTOMATION",
+      "HYPOTHESIS_GEN",
+      "CODE_ACCELERATION",
+      "KNOWLEDGE_EXTRACTION"
+    ],
     "primary_ai_capabilities": [
       "AlphaQubit (Recurrent Transformer Neural Network)",
       "ML-QEM, RL for QEC code discovery",
@@ -1892,7 +2278,7 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
+    "consensus_score": 0.4,
     "primary_mechanisms": [],
     "primary_ai_capabilities": [
       "AIシステムの社会・文化的影響の質的調査"
@@ -1913,8 +2299,11 @@
     "confidence_tier": "tentative",
     "mention_count": 5,
     "source_count": 5,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "BERT・GPTによる誤情報・ボット・フェイクニュース検出",
       "NLP・機械学習による政治テキストの分極化分析",
@@ -1938,8 +2327,13 @@
     "confidence_tier": "tentative",
     "mention_count": 6,
     "source_count": 6,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.3333333333333333,
+    "primary_mechanisms": [
+      "CLINICAL_TRIAL_SUPPORT",
+      "WORKFLOW_AUTOMATION",
+      "SIMULATION_EMULATION",
+      "EXPERT_AUGMENTATION"
+    ],
     "primary_ai_capabilities": [
       "LLMによる行動経済学的意思決定タスクの模倣",
       "マルチエージェントLLMによる認知バイアス軽減",
@@ -1962,8 +2356,13 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "LITERATURE_SYNTHESIS",
+      "KNOWLEDGE_EXTRACTION",
+      "HYPOTHESIS_GEN",
+      "DATA_LABELING"
+    ],
     "primary_ai_capabilities": [
       "BERT・LLMによる社会科学テキスト分析・概念測定",
       "AI予測分析・顔認識・推薦アルゴリズムの社会的影響"
@@ -1984,8 +2383,11 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.30000000000000004,
+    "primary_mechanisms": [
+      "MULTIMODAL_ANALYSIS",
+      "DATA_LABELING"
+    ],
     "primary_ai_capabilities": [
       "Convolutional vision Transformer (CvT)",
       "Deep Neural Networks for Gravitational Wave Detection"
@@ -2006,8 +2408,11 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "DATA_LABELING",
+      "CLINICAL_TRIAL_SUPPORT"
+    ],
     "primary_ai_capabilities": [
       "CNN + GPU Phase Folding",
       "CNN for Exoplanet Transit Classification"
@@ -2028,7 +2433,7 @@
     "confidence_tier": "insufficient",
     "mention_count": 1,
     "source_count": 1,
-    "consensus_score": 0.0,
+    "consensus_score": 0.4,
     "primary_mechanisms": [],
     "primary_ai_capabilities": [
       "Diffusion Probabilistic Downscaling Model (DPDM)"
@@ -2045,12 +2450,17 @@
     "domain_name_ja": "コード生成",
     "hierarchy_level": 3,
     "parent_domain_en": "Software Engineering",
-    "is_ai_accelerated": true,
-    "confidence_tier": "moderate",
+    "is_ai_accelerated": false,
+    "confidence_tier": "tentative",
     "mention_count": 8,
     "source_count": 7,
-    "consensus_score": 0.8,
-    "primary_mechanisms": [],
+    "consensus_score": 0.45,
+    "primary_mechanisms": [
+      "CODE_ACCELERATION",
+      "HYPOTHESIS_GEN",
+      "EXPERT_AUGMENTATION",
+      "LITERATURE_SYNTHESIS"
+    ],
     "primary_ai_capabilities": [
       "GitHub CopilotによるAIコード生成",
       "large language models for code generation (Codex/GPT-4 based)",
@@ -2095,8 +2505,11 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "NowcastNet (Physics-informed Neural Network)",
       "DGMR (Deep Generative Model of Rain)"
@@ -2137,7 +2550,10 @@
     "mention_count": 1,
     "source_count": 1,
     "consensus_score": 0.6,
-    "primary_mechanisms": [],
+    "primary_mechanisms": [
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION"
+    ],
     "primary_ai_capabilities": [
       "生成AI（リスク分析・コンプライアンス自動化）"
     ],
@@ -2154,11 +2570,17 @@
     "hierarchy_level": 3,
     "parent_domain_en": "Drug Discovery",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 5,
     "source_count": 4,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "WORKFLOW_AUTOMATION",
+      "KNOWLEDGE_EXTRACTION",
+      "CROSS_DOMAIN_TRANSFER"
+    ],
     "primary_ai_capabilities": [
       "ADMET-AI（機械学習ADMETプラットフォーム）",
       "マルチエージェントLLMシステム（ADMET毒性予測）",
@@ -2182,9 +2604,12 @@
     "confidence_tier": "moderate",
     "mention_count": 6,
     "source_count": 5,
-    "consensus_score": 0.7,
+    "consensus_score": 0.5,
     "primary_mechanisms": [
-      "MOLECULE_DESIGN"
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "CLINICAL_TRIAL_SUPPORT",
+      "CODE_ACCELERATION"
     ],
     "primary_ai_capabilities": [
       "generative AI, reinforcement learning-based molecular design",
@@ -2212,9 +2637,13 @@
     "confidence_tier": "strong",
     "mention_count": 10,
     "source_count": 10,
-    "consensus_score": 0.5333333333333333,
+    "consensus_score": 0.4,
     "primary_mechanisms": [
-      "MOLECULE_DESIGN"
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "CROSS_DOMAIN_TRANSFER",
+      "SIMULATION_EMULATION",
+      "EXPERT_AUGMENTATION"
     ],
     "primary_ai_capabilities": [
       "diffusion models, transformers, variational autoencoders, reinforcement learning",
@@ -2238,11 +2667,17 @@
     "hierarchy_level": 3,
     "parent_domain_en": "Drug Discovery",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4000000000000001,
+    "primary_mechanisms": [
+      "KNOWLEDGE_EXTRACTION",
+      "LITERATURE_SYNTHESIS",
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "CROSS_DOMAIN_TRANSFER"
+    ],
     "primary_ai_capabilities": [
       "LLM-DDAGNN-AE（グラフニューラルネットワーク×LLM統合）",
       "TxGNN（グラフ基盤モデル×医療知識グラフ）",
@@ -2264,9 +2699,11 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
+    "consensus_score": 0.30000000000000004,
     "primary_mechanisms": [
-      "MOLECULE_DESIGN"
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN",
+      "CLINICAL_TRIAL_SUPPORT"
     ],
     "primary_ai_capabilities": [
       "AlphaFold3（拡散モデルベース複合体予測）",
@@ -2288,9 +2725,13 @@
     "confidence_tier": "tentative",
     "mention_count": 6,
     "source_count": 5,
-    "consensus_score": 0.0,
+    "consensus_score": 0.3666666666666667,
     "primary_mechanisms": [
-      "MULTIMODAL_ANALYSIS"
+      "CROSS_DOMAIN_TRANSFER",
+      "HYPOTHESIS_GEN",
+      "LITERATURE_SYNTHESIS",
+      "MULTIMODAL_ANALYSIS",
+      "MOLECULE_DESIGN"
     ],
     "primary_ai_capabilities": [
       "摂動型細胞基盤モデル（因果的生物学推論）",
@@ -2312,12 +2753,16 @@
     "hierarchy_level": 3,
     "parent_domain_en": "Genomics & Sequencing",
     "is_ai_accelerated": false,
-    "confidence_tier": "insufficient",
+    "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.0,
+    "consensus_score": 0.4000000000000001,
     "primary_mechanisms": [
-      "MULTIMODAL_ANALYSIS"
+      "LITERATURE_SYNTHESIS",
+      "CLINICAL_TRIAL_SUPPORT",
+      "MULTIMODAL_ANALYSIS",
+      "MOLECULE_DESIGN",
+      "HYPOTHESIS_GEN"
     ],
     "primary_ai_capabilities": [
       "マルチオミクス統合AI（ゲノム×転写×プロテオミクス×代謝×エピゲノム）",
@@ -2340,8 +2785,10 @@
     "confidence_tier": "insufficient",
     "mention_count": 1,
     "source_count": 1,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "MULTIMODAL_ANALYSIS"
+    ],
     "primary_ai_capabilities": [
       "深層学習CNN（32モデル参加）"
     ],
@@ -2361,8 +2808,13 @@
     "confidence_tier": "tentative",
     "mention_count": 3,
     "source_count": 3,
-    "consensus_score": 0.6000000000000001,
-    "primary_mechanisms": [],
+    "consensus_score": 0.5333333333333333,
+    "primary_mechanisms": [
+      "MULTIMODAL_ANALYSIS",
+      "CROSS_DOMAIN_TRANSFER",
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "deep learning, convolutional neural networks, foundation models",
       "foundation models, large language models, diffusion models",
@@ -2387,8 +2839,12 @@
     "confidence_tier": "insufficient",
     "mention_count": 2,
     "source_count": 2,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "MOLECULE_DESIGN",
+      "LITERATURE_SYNTHESIS",
+      "HYPOTHESIS_GEN"
+    ],
     "primary_ai_capabilities": [
       "ML-based materials screening",
       "ML + Physics-Informed Neural Networks for Solid-State Battery Design"
@@ -2428,8 +2884,12 @@
     "confidence_tier": "insufficient",
     "mention_count": 1,
     "source_count": 1,
-    "consensus_score": 0.0,
-    "primary_mechanisms": [],
+    "consensus_score": 0.4,
+    "primary_mechanisms": [
+      "CROSS_DOMAIN_TRANSFER",
+      "HYPOTHESIS_GEN",
+      "MOLECULE_DESIGN"
+    ],
     "primary_ai_capabilities": [
       "POLYT5, polyBART (Transformer Language Models for Polymers)"
     ],
